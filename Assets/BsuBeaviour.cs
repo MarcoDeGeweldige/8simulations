@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BsuBeaviour : MonoBehaviour
 {
-
     // Line number for the bus route
     [SerializeField]
     private string lineNr;
@@ -16,6 +15,7 @@ public class BsuBeaviour : MonoBehaviour
 
     // Private fields for components, following naming conventions
     private Movement movement;
+
     private ActorInfo actorInfo;
     private ActorPathFinding actorPathFinding;
 
@@ -39,5 +39,4 @@ public class BsuBeaviour : MonoBehaviour
     {
         // Implementation depends on how you want to set the route points
     }
-
 }

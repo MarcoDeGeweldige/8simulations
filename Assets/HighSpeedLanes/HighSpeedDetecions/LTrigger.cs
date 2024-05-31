@@ -1,10 +1,7 @@
-
 using UnityEngine;
 
 public class LTrigger : MonoBehaviour
 {
-
-
     public Vector3 DetectorSize;
 
     public bool IsNear;
@@ -19,7 +16,6 @@ public class LTrigger : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.GetComponent<ActorInfo>().Isprio())
         {
             laanBehaviour.OnDetect(IsNear, true);
@@ -32,7 +28,6 @@ public class LTrigger : MonoBehaviour
         if (other.gameObject.GetComponent<ActorInfo>().IsBus())
         {
             other.gameObject.GetComponent<BussNeumbers>().SetLaneLamp(laanBehaviour.LampostManager.watch);
-
         }
     }
 

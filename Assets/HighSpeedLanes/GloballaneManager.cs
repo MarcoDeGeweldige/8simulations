@@ -1,17 +1,15 @@
 using Newtonsoft.Json;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class GloballaneManager : MonoBehaviour
 {
-
     public PreBuildCorssPoints BuildCorssPoints;
 
     public float LaneScalar = 1;
     public bool LoopSpawn;
+
     // Start is called before the first frame update
     public GameObject Traffic;
 
@@ -30,7 +28,6 @@ public class GloballaneManager : MonoBehaviour
     public float OntruimingsTijdFietser = 20;
     public float OntruimingsTijdLoper = 20;
 
-
     public int timeInSec;
     public float updateTimer;
     public List<GameObject> Carlanes;
@@ -46,16 +43,13 @@ public class GloballaneManager : MonoBehaviour
     public List<GameObject> Voetpaden;
     public List<GameObject> TrafficList = new List<GameObject>();
 
-
     public List<CarSensormsg> carSensormsgsA = new List<CarSensormsg>();
     public List<SingleDetector> BikelaneA = new List<SingleDetector>();
     public List<SingleDetector> WalklaneA = new List<SingleDetector>();
 
-
     public List<CarSensormsg> carSensormsgsB = new List<CarSensormsg>();
     public List<SingleDetector> BikelaneB = new List<SingleDetector>();
     public List<SingleDetector> WalklaneB = new List<SingleDetector>();
-
 
     public List<CarSensormsg> carSensormsgsC = new List<CarSensormsg>();
 
@@ -65,21 +59,18 @@ public class GloballaneManager : MonoBehaviour
     public List<SingleDetector> BikelaneE = new List<SingleDetector>();
     public List<SingleDetector> WalklaneE = new List<SingleDetector>();
 
-
     public List<CarSensormsg> carSensormsgsF = new List<CarSensormsg>();
     public List<SingleDetector> BikelaneF = new List<SingleDetector>();
     public List<SingleDetector> WalklaneF = new List<SingleDetector>();
 
-
     //called by the client upon the first frame
 
-
     public SignalGroup SignalGroup = new SignalGroup();
-    LaneLampSettr LaneLampSettr = new LaneLampSettr();
+    private LaneLampSettr LaneLampSettr = new LaneLampSettr();
 
     public Clientbetter Communicator;
 
-    void Start()
+    private void Start()
     {
         this.LaneLampSettr.SetupSettr(this);
         StartCoroutine(getLane(timeInSec));
@@ -87,22 +78,22 @@ public class GloballaneManager : MonoBehaviour
         StartCoroutine(UpdatePakket(updateTimer));
     }
 
-
     public void SetOntruimingsTijdAuto(float tijd)
     {
         this.OntruimingsTijdAuto = tijd;
     }
+
     public void SetOntruimingsTijdFietser(float tijd)
     {
         this.OntruimingsTijdFietser = tijd;
     }
+
     public void SetOntruimingsTijdLoper(float tijd)
     {
         this.OntruimingsTijdLoper = tijd;
     }
 
-
-    IEnumerator getLane(int timeInSec)
+    private IEnumerator getLane(int timeInSec)
     {
         //refresh simulation state 5 secs
         yield return new WaitForSeconds(timeInSec);
@@ -113,7 +104,7 @@ public class GloballaneManager : MonoBehaviour
         this.SignalGroup = GetSignalGroup();
     }
 
-    IEnumerator UpdatePakket(float ticktime)
+    private IEnumerator UpdatePakket(float ticktime)
     {
         yield return new WaitForSeconds(ticktime);
         string japsie = JsonConvert.SerializeObject(SignalGroup);
@@ -126,9 +117,8 @@ public class GloballaneManager : MonoBehaviour
         StartCoroutine(UpdatePakket(ticktime));
     }
 
-
     //time based loop for refreshing important things
-    IEnumerator Simutick(int timeInSec)
+    private IEnumerator Simutick(int timeInSec)
     {
         //refresh simulation state 5 secs
         yield return new WaitForSeconds(timeInSec);
@@ -172,10 +162,7 @@ public class GloballaneManager : MonoBehaviour
             int c = UnityEngine.Random.Range(min, max);
             CreateBikers(go.GetComponentInChildren<FietsLaanBehaviour>(), c);
         }
-
     }
-
-
 
     //public List<SingleDetector> GetSingleDetectors(GameObject prebuiltBlock, bool getBikers)
     //{
@@ -197,17 +184,10 @@ public class GloballaneManager : MonoBehaviour
     //    return singleDetectors;
     //}
 
-
-
-
     //public List<SingleDetector> GetSingleDetectors (GameObject PrebuiltBlock, bool GetBikers)
     //{
-
-
-
     //    if (GetBikers)
     //    {
-
     //        return PrebuiltBlock.GetComponent<PrebuildBlockInfo>()
     //                            .GetBikeLanes()
     //                            .Select(selector: obj => obj.GetComponent<SingleDetector>())
@@ -222,16 +202,10 @@ public class GloballaneManager : MonoBehaviour
     //                .Where(detector => detector != null)
     //                .ToList();
 
-
-
-
     //}
 
     public void getBikeLaneInfo()
     {
-
-
-
         //PrebuiltLaneA.GetComponent<PrebuildBlockInfo>().fietsLaanBehaviours
         WalklaneA = PrebuiltLaneA.GetComponent<PrebuildBlockInfo>().WalklaneScripts;
         WalklaneB = PrebuiltLaneB.GetComponent<PrebuildBlockInfo>().WalklaneScripts;
@@ -263,49 +237,39 @@ public class GloballaneManager : MonoBehaviour
 
     private void getdata()
     {
-
-        //for abc 
+        //for abc
         for (int i = 0; i < 4; i++)
         {
             carSensormsgsA.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-
         }
 
         for (int i = 4; i < 4 + 4; i++)
         {
             carSensormsgsB.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-
         }
         for (int i = 4 + 4; i < 4 + 4 + 4; i++)
         {
             carSensormsgsC.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-
         }
     }
+
     private void getdataFromPreBuildB()
     {
-
         //for Def
         for (int i = 0; i < 4; i++)
         {
             carSensormsgsD.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-
         }
 
         for (int i = 4; i < 4 + 3; i++)
         {
             carSensormsgsE.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-
         }
         for (int i = 4 + 3; i < 4 + 3 + 4; i++)
         {
             carSensormsgsF.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-
         }
-
     }
-
-
 
     //create and add cars to the light
     private void CreateCars(CarLanebehaviour go, int count)
@@ -323,8 +287,8 @@ public class GloballaneManager : MonoBehaviour
             kees.GetComponentInChildren<Movement>().Setup();
             kees.GetComponentInChildren<Movement>().SetNewDuration(OntruimingsTijdAuto);
         }
-
     }
+
     private void CreateBus(CarLanebehaviour go)
     {
         GameObject kees = Instantiate(CarActorCollection.GetBussprefab(), go.GetSpwanPos(), Quaternion.identity);
@@ -332,10 +296,7 @@ public class GloballaneManager : MonoBehaviour
         kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
         kees.GetComponentInChildren<Movement>().Setup();
         kees.GetComponentInChildren<Movement>().SetNewDuration(OntruimingsTijdAuto);
-
-
     }
-
 
     private void CreatePrioVeh(CarLanebehaviour go)
     {
@@ -344,16 +305,10 @@ public class GloballaneManager : MonoBehaviour
         kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
         kees.GetComponentInChildren<Movement>().Setup();
         kees.GetComponentInChildren<Movement>().SetNewDuration(OntruimingsTijdAuto);
-
-
     }
-
-
-
 
     private void CreateWalkers(WalkLanebehaviour go, int count)
     {
-
         if (go.IsMiddlePoint)
         {
             return;
@@ -378,8 +333,8 @@ public class GloballaneManager : MonoBehaviour
             kees.GetComponent<Movement>().Setup();
             kees.GetComponent<Movement>().SetNewDuration(OntruimingsTijdLoper);
         }
-
     }
+
     private void CreateBikers(FietsLaanBehaviour go, int count)
     {
         for (int i = 0; i < count; i++)
@@ -390,7 +345,6 @@ public class GloballaneManager : MonoBehaviour
             kees.GetComponent<Movement>().Setup();
             kees.GetComponent<Movement>().SetNewDuration(OntruimingsTijdFietser);
         }
-
     }
 
     public SignalGroup GetSignalGroup()
@@ -414,8 +368,8 @@ public class GloballaneManager : MonoBehaviour
         msg.C = AssignblocksmsgCarOnlyData(carSensormsgsC);
 
         return msg;
-
     }
+
     public blockmsg AssignblockmsgData(List<CarSensormsg> carSensormsgs, List<SingleDetector> bikers, List<SingleDetector> walks)
     {
         blockmsg msg = new blockmsg();
@@ -425,6 +379,7 @@ public class GloballaneManager : MonoBehaviour
 
         return msg;
     }
+
     public blockmsgBus AssignblockmsgBusData(List<CarSensormsg> carSensormsgs, List<SingleDetector> bikers, List<SingleDetector> walks, int nr)
     {
         blockmsgBus msgBus = new blockmsgBus();
@@ -433,7 +388,7 @@ public class GloballaneManager : MonoBehaviour
         msgBus.Walkers = walks;
 
         msgBus.Bikers = bikers;
-        msgBus.LBusses = new List<int> {nr};
+        msgBus.LBusses = new List<int> { nr };
         return msgBus;
     }
 
@@ -445,7 +400,6 @@ public class GloballaneManager : MonoBehaviour
         return msgCarOnly;
     }
 
-
     public blocksMsg2 AssignMsg2Data()
     {
         blocksMsg2 msg = new blocksMsg2();
@@ -453,9 +407,7 @@ public class GloballaneManager : MonoBehaviour
         msg.E = AssignblockmsgBusData(carSensormsgsE, CarActorCollection.Singlesfa, CarActorCollection.Singleswa, PrebuiltLaneE.GetComponent<PrebuildBlockInfo>().BBusnr);
         msg.F = AssignblockmsgData(carSensormsgsF, CarActorCollection.Singlesfa, CarActorCollection.Singleswa);
         return msg;
-
     }
-
 
     public void Update()
     {
@@ -465,5 +417,4 @@ public class GloballaneManager : MonoBehaviour
             Communicator.updatedKees = false;
         }
     }
-
 }

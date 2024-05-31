@@ -7,6 +7,7 @@ public class CarLanebehaviour : MonoBehaviour
 {
     // Public fields
     public bool HasOffsetNearlusFromStart = false;
+
     public float EntranceOffset = 0;
     public Vector3 OffsettedStartPos;
     public bool IsMiddlePoint = false;
@@ -153,12 +154,10 @@ public class CarLanebehaviour : MonoBehaviour
 
 //public class CarLanebehaviour : MonoBehaviour
 //{
-
 //    //public GameObject Parent;
 //    public bool HasOffsetNearlusFromStart = false;
 //    public float EntranceOffset = 0;
 //    public Vector3 OffsettedStartPos;
-
 
 //    public bool IsMiddlePoint = false;
 //    //public GameObject triggerNear;
@@ -184,7 +183,6 @@ public class CarLanebehaviour : MonoBehaviour
 //    private Road LaneRoad;
 
 //    public LampostManager LampostManager;
-
 
 //    private void Start()
 //    {
@@ -212,7 +210,6 @@ public class CarLanebehaviour : MonoBehaviour
 //    {
 //        this.IsMiddlePoint = true;
 //    }
-
 
 //    public void OnDetect(bool isnear)
 //    {
@@ -266,16 +263,13 @@ public class CarLanebehaviour : MonoBehaviour
 //        LampostManager.SetLight(state);
 //    }
 
-
 //    //position of traffic light entrance and the near loop
 //    //here you will have to wait if there is a traffic light
 //    public Vector3 GetLaneStartSignal()
 //    {
-
 //        return this.NearLus.transform.position;
 
 //    }
-
 
 //    //call this before turning
 //    public Vector3 GeLaneExit()

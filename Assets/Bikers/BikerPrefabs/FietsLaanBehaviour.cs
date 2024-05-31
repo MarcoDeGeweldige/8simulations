@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class FietsLaanBehaviour : MonoBehaviour
 {
-
-
     public GameObject NearLusF;
     public GameObject FarLusF;
 
@@ -21,12 +19,10 @@ public class FietsLaanBehaviour : MonoBehaviour
     //the local road defenition
     private Road LaneRoad;
 
-
     private void Start()
     {
         CreateRequiruiments();
         LaneRoad = GetComponentInChildren<Road>();
-
     }
 
     private void CreateRequiruiments()
@@ -40,14 +36,15 @@ public class FietsLaanBehaviour : MonoBehaviour
         DetectorLus.Detected = true;
         Debug.Log("detected bike on enter");
     }
+
     public void ExitDetected()
     {
         DetectorLus.Detected = false;
         Debug.Log("detected bike on exit");
     }
+
     public Vector3 GetLaneStartSignal()
     {
-
         return LaneRoad.GetStartPosition().position;
     }
 
@@ -57,6 +54,7 @@ public class FietsLaanBehaviour : MonoBehaviour
         //return this.NearLusF.transform.position;
         return LaneRoad.GetStartPosition().position + transform.forward * 500;
     }
+
     //enter the lane at the start position
     public Vector3 GetLaneStart()
     {
@@ -68,5 +66,4 @@ public class FietsLaanBehaviour : MonoBehaviour
     {
         LampostManager.SetLight(state);
     }
-
 }

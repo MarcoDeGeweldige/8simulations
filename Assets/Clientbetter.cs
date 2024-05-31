@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Net.Sockets;
@@ -6,7 +5,6 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
-
 
 public class Clientbetter : MonoBehaviour
 {
@@ -31,7 +29,6 @@ public class Clientbetter : MonoBehaviour
     private NetworkStream stream;
     private Thread clientReceiveThread;
 
-
     public SignalGroup SignalGroup = new SignalGroup();
 
     public UnityEvent<bool> onServerStart;
@@ -39,8 +36,7 @@ public class Clientbetter : MonoBehaviour
     public UnityEvent<bool> SenderThreadState;
     public UnityEvent<bool> ReceiverThreadState;
 
-
-    void Start()
+    private void Start()
     {
         //string filePath = Path.Combine(Application.persistentDataPath, "ControllerToSim.json");
         //string path = Application.persistentDataPath + "/ControllerToSim.json";
@@ -56,7 +52,7 @@ public class Clientbetter : MonoBehaviour
         ConnectToServer();
     }
 
-    void Update()
+    private void Update()
     {
         //disable this if you are sending from another script or a button
         if (Input.GetKeyDown(KeyCode.Space) && this.PostOnKey)
@@ -65,7 +61,6 @@ public class Clientbetter : MonoBehaviour
             SendMessageToServer(jsonjapp);
         }
     }
-
 
     public void PostIp(string ip)
     {
@@ -81,6 +76,7 @@ public class Clientbetter : MonoBehaviour
     {
         this.MessagePostTime = time;
     }
+
     //true is post on key
     public void SetPostMode(bool mode)
     {
@@ -95,7 +91,8 @@ public class Clientbetter : MonoBehaviour
     {
         return this.MessagePostTime;
     }
-    void ConnectToServer()
+
+    private void ConnectToServer()
     {
         onServerStart.Invoke(true);
         StartCoroutine(TimedPoster(5));
@@ -139,7 +136,6 @@ public class Clientbetter : MonoBehaviour
                         kees = serverMessage;
                         this.updatedKees = true;
                         Debug.Log("Server message received: " + serverMessage);
-
                     }
                 }
             }
@@ -171,7 +167,7 @@ public class Clientbetter : MonoBehaviour
         SenderThreadState.Invoke(false);
     }
 
-    void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
         if (stream != null)
             stream.Close();
@@ -181,7 +177,7 @@ public class Clientbetter : MonoBehaviour
             clientReceiveThread.Abort();
     }
 
-    IEnumerator TimedPoster(float time)
+    private IEnumerator TimedPoster(float time)
     {
         //refresh simulation state 5 secs
         yield return new WaitForSeconds(time);
@@ -189,6 +185,4 @@ public class Clientbetter : MonoBehaviour
 
         StartCoroutine(TimedPoster(time));
     }
-
-
 }

@@ -1,6 +1,5 @@
 public class MockDatagenerator
 {
-
     /*
 
     public Index index;
@@ -9,7 +8,6 @@ public class MockDatagenerator
     public PakketRes generateRecievePakket()
     {
         PakketRes pakket = new PakketRes();
-
 
         pakket.blocks = new recieverpakket.Block[4];
         for (int i = 0; i < pakket.blocks.Length; i++)
@@ -32,22 +30,17 @@ public class MockDatagenerator
             block.id = "A";
         }
 
-
         return pakket;
     }
     public void CreatLocalRecievePakket()
     {
-
     }
-
 
     public SignalGroup GenerateMockCrossmsg()
     {
-
         SignalGroup signalGroup = new SignalGroup();
 
         signalGroup.blocksMsg = new blocksMsg();
-
 
         signalGroup.blocksMsg.A = new blockmsg();
         //signalGroup.blocksMsg.B = new blockmsg();
@@ -58,12 +51,10 @@ public class MockDatagenerator
 
         signalGroup.blocksMsg.C.CarSensormsg = new CarSensormsg[2];
 
-
         for(int i = 0;  i < signalGroup.blocksMsg.A.CarSensormsg.Length; i++)
         {
             signalGroup.blocksMsg.A.CarSensormsg[i] = new CarSensormsg();
         }
-
 
         signalGroup.blocksMsg.A.CarSensormsg[1].DetectNear = true;
         signalGroup.blocksMsg.A.CarSensormsg[1].DetectFar = false;
@@ -87,7 +78,6 @@ public class MockDatagenerator
         //signalGroup.blocksMsg.B.CarSensormsg[2].PrioCar = true;
 
         return signalGroup;
-
     }
 
     public Index generateIndex()
@@ -111,7 +101,6 @@ public class MockDatagenerator
                 sensorsmock[i] = new Sensors();
                 sensorsmock[i].State = true;
                 sensorsmock[i].Name = i.ToString();
-
             }
             block.Cars = sensorsmock;
             //sensorsmock = new Sensors[2];
@@ -120,7 +109,6 @@ public class MockDatagenerator
                 sensorsmock[i] = new Sensors();
                 sensorsmock[i].State = false;
                 sensorsmock[i].Name = i.ToString();
-
             }
             block.Cyclists = sensorsmock;
 
@@ -131,18 +119,13 @@ public class MockDatagenerator
                 sensorsmock[i] = new Sensors();
                 sensorsmock[i].State = true;
                 sensorsmock[i].Name = i.ToString();
-
             }
             block.Pedestrians = sensorsmock;
 
             block.Busses = new Busses[2];
 
-
             block.id = "hagrid";
-
         }
-
-
 
         return num;
     }

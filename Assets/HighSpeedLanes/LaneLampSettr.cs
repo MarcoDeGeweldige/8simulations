@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class LaneLampSettr
 {
-
     private bool SetupDone = false;
 
     public GloballaneManager worldspwanerManager;
-
 
     // Start is called before the first frame update
 
@@ -23,7 +21,6 @@ public class LaneLampSettr
         //recieverpakket.SignalGroup gr = JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei);
         recieverpakket.SignalGroup gr;
 
-
         try
         {
             gr = JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei);
@@ -36,7 +33,6 @@ public class LaneLampSettr
 
         //if (JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei))
         //{
-
         //}
         Debug.Log(jappei);
         if (SetupDone)
@@ -58,7 +54,6 @@ public class LaneLampSettr
 
     public void SetAllBikePedLamps(recieverpakket.SignalGroup message)
     {
-
         recieverpakket.blocksMsg msg = message.blocksMsg;
         worldspwanerManager.PrebuiltLaneA.GetComponent<PrebuildBlockInfo>().Setlamps(msg.A.bikers, msg.A.Walkers);
         worldspwanerManager.PrebuiltLaneB.GetComponent<PrebuildBlockInfo>().Setlamps(msg.B.bikers, msg.B.Walkers);
@@ -88,8 +83,8 @@ public class LaneLampSettr
         {
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.C.Cars[i - (4 + 4)]);
         }
-
     }
+
     public void SetBlockLampsCarLaneB(recieverpakket.blocksMsg2 msg)
     {
         for (int i = 0; i < 4; i++)

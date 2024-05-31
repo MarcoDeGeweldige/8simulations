@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class StateDisplay : MonoBehaviour
 {
     private bool truelink;
+
     public bool Sink
     {
         get
@@ -15,11 +16,8 @@ public class StateDisplay : MonoBehaviour
         {
             truelink = value;
             UpdateListner();
-
         }
     }
-
-
 
     public UnityEvent<bool> onBoolUpdated;
 
@@ -28,7 +26,7 @@ public class StateDisplay : MonoBehaviour
         //StartCoroutine(toggleauto());
     }
 
-    IEnumerator toggleauto()
+    private IEnumerator toggleauto()
     {
         yield return new WaitForSeconds(1);
         Sink = !Sink;
@@ -38,8 +36,5 @@ public class StateDisplay : MonoBehaviour
     public void UpdateListner()
     {
         onBoolUpdated.Invoke(Sink);
-
     }
-
-
 }

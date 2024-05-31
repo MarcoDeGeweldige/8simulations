@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LampWatch : MonoBehaviour
 {
-
     private bool canGo = true;
     private bool SharesBus = false;
 
@@ -13,11 +12,10 @@ public class LampWatch : MonoBehaviour
         StartCoroutine(PublishLoop());
     }
 
-
     // Define an event with a boolean parameter to notify subscribers
     public event Action<bool, bool> OnCanGoChanged;
 
-    IEnumerator PublishLoop()
+    private IEnumerator PublishLoop()
     {
         while (true) // Loop indefinitely
         {
@@ -26,7 +24,6 @@ public class LampWatch : MonoBehaviour
             yield return new WaitForSeconds(2); // Wait for 2 seconds before the next scan
         }
     }
-
 
     public void BussPassedLane()
     {
@@ -39,7 +36,6 @@ public class LampWatch : MonoBehaviour
         SharesBus = true;
         OnCanGoChanged?.Invoke(canGo, SharesBus);
     }
-
 
     // Property to encapsulate canGo with the event trigger
     public bool CanGo
@@ -55,9 +51,4 @@ public class LampWatch : MonoBehaviour
             }
         }
     }
-
-
 }
-
-
-

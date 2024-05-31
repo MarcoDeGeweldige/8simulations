@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class RunWarning : MonoBehaviour
 {
-
-
     public string Popup;
 
     [SerializeField]
@@ -27,6 +25,7 @@ public class RunWarning : MonoBehaviour
             }
         }
     }
+
     //awake runs before start
     private void Awake()
     {
@@ -37,11 +36,8 @@ public class RunWarning : MonoBehaviour
         Debug.Log(Popup);
     }
 
-
-
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!StartClient)
         {

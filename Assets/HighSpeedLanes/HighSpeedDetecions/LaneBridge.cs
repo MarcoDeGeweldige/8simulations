@@ -6,8 +6,8 @@ public class LaneBridge : MonoBehaviour
 {
     // Private fields
     private bool isWaitPoint = false; // Indicates whether this bridge is a wait point
-    private UniversalTrigger universalTrigger = null; // Reference to the connected UniversalTrigger
 
+    private UniversalTrigger universalTrigger = null; // Reference to the connected UniversalTrigger
 
     // Public properties
     public bool IsWaitPoint
@@ -25,7 +25,9 @@ public class LaneBridge : MonoBehaviour
     // Events
 
     public event Action<bool> IsWaitNode; // Event triggered when IsWaitPoint is queried
+
     public event Action<bool, bool> HasGreenLight; // Event triggered when green light status changes
+
     public event Action<LaneBridge> OnConnected; // Event triggered when connected to UniversalTrigger
 
     public SingleDetector GetSingleDetector()
@@ -37,6 +39,7 @@ public class LaneBridge : MonoBehaviour
     {
         return this.universalTrigger.GetTriggerStatus();
     }
+
     // Connects this LaneBridge to a UniversalTrigger
     public void ConnectVehicle(UniversalTrigger trigger)
     {
@@ -64,17 +67,15 @@ public class LaneBridge : MonoBehaviour
     // Invoked to check if this bridge needs to wait
     private void IsNeedsWaitNode(bool needsWait)
     {
-
         IsWaitNode?.Invoke(needsWait);
     }
 
     // Unsubscribe from events when this component is disabled
     private void OnDisable()
     {
-        if(universalTrigger != null)
+        if (universalTrigger != null)
         {
             universalTrigger.GetLampWatch().OnCanGoChanged -= LaneBridge_OnCanGoChanged;
         }
-
     }
 }

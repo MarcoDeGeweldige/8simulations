@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class LaneStateLocal : MonoBehaviour
 {
-
     public LampostManager manager;
 
     public LampWatch watch;
@@ -11,7 +10,6 @@ public class LaneStateLocal : MonoBehaviour
     {
         manager = GetComponentInChildren<LampostManager>();
     }
-
 
     public bool IsGreen()
     {

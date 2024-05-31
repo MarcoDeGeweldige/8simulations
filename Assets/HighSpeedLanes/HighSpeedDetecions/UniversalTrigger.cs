@@ -5,20 +5,21 @@ using UnityEngine;
 public class UniversalTrigger : MonoBehaviour
 {
     public Vector3 DetectorSize;
+
     //needs to wait when true
     public bool IsWaitPoint;
 
     public bool hasActor = false;
     public SingleDetector MySingleDetector = new SingleDetector();
+
     //this is the initial lanebridge
     private LaneBridge laneBridge;
 
     private LampWatch LampWatch;
 
-
     public event Action<bool> OnTriggerChange;
-    public event Action<bool, bool> OnlampChange;
 
+    public event Action<bool, bool> OnlampChange;
 
     public void Setup()
     {
@@ -30,13 +31,11 @@ public class UniversalTrigger : MonoBehaviour
 #pragma warning disable IDE0054 // Use compound assignment
         collider.size = collider.size * 2;
 #pragma warning restore IDE0054 // Use compound assignment
-
     }
 
     public void Setup(LaneBridge bridge)
     {
         laneBridge = bridge;
-
     }
 
     public void OnTriggerEnter(Collider other)
@@ -52,13 +51,14 @@ public class UniversalTrigger : MonoBehaviour
         if (actorInfo != null)
         {
             OnTriggerChange?.Invoke(true);
-
         }
     }
+
     public bool GetTriggerStatus()
     {
         return hasActor;
     }
+
     public SingleDetector GetSingleDetector()
     {
         return MySingleDetector;
@@ -70,13 +70,10 @@ public class UniversalTrigger : MonoBehaviour
         OnTriggerChange?.Invoke(false);
         laneBridge.DisconnectTrigger();
         MySingleDetector.Detected = false;
-
-
     }
 
     public LampWatch GetLampWatch()
     {
         return this.LampWatch;
     }
-
 }

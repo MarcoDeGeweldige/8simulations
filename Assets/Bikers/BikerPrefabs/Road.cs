@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 /// <summary>
 /// Represents a road segment with start and end positions.
 /// </summary>
@@ -25,5 +24,3 @@ public class Road : MonoBehaviour
         return endPosition;
     }
 }
-
-
