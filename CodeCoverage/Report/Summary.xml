@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageReport scope="Summary">
+  <Summary>
+    <Generatedon>14-6-2024 - 17:40:15</Generatedon>
+    <Parser>MultiReportParser (3x OpenCoverParser)</Parser>
+    <Assemblies>2</Assemblies>
+    <Classes>65</Classes>
+    <Files>52</Files>
+    <Coveredlines>744</Coveredlines>
+    <Uncoveredlines>1504</Uncoveredlines>
+    <Coverablelines>2248</Coverablelines>
+    <Totallines>4812</Totallines>
+    <Linecoverage>33</Linecoverage>
+    <Coveredbranches>0</Coveredbranches>
+    <Totalbranches>0</Totalbranches>
+    <Coveredmethods>141</Coveredmethods>
+    <Totalmethods>432</Totalmethods>
+    <Methodcoverage>32.6</Methodcoverage>
+  </Summary>
+  <Coverage>
+    <Assembly name="Assembly-CSharp" classes="64" coverage="35.1" coveredlines="741" coverablelines="2108" totallines="6136" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="140" totalmethods="418" methodcoverage="33.4">
+      <Class name="ActorInfo" coverage="3.2" coveredlines="1" coverablelines="31" totallines="55" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="6" methodcoverage="16.6" />
+      <Class name="ActorNodeReader" coverage="76.9" coveredlines="20" coverablelines="26" totallines="57" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="5" methodcoverage="100" />
+      <Class name="ActorPathFinding" coverage="8.3" coveredlines="3" coverablelines="36" totallines="71" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="9" methodcoverage="11.1" />
+      <Class name="AutoLoadPipelineAsset" coverage="0" coveredlines="0" coverablelines="35" totallines="57" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="BlockDisplayer" coverage="100" coveredlines="4" coverablelines="4" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
+      <Class name="blockmsg" coverage="0" coveredlines="0" coverablelines="3" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="7" methodcoverage="0" />
+      <Class name="blockmsgBus" coverage="0" coveredlines="0" coverablelines="4" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="9" methodcoverage="0" />
+      <Class name="blockmsgCarOnly" coverage="0" coveredlines="0" coverablelines="1" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="blocksMsg" coverage="0" coveredlines="0" coverablelines="3" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="7" methodcoverage="0" />
+      <Class name="blocksMsg2" coverage="0" coveredlines="0" coverablelines="3" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="7" methodcoverage="0" />
+      <Class name="BlockViewer" coverage="54" coveredlines="20" coverablelines="37" totallines="85" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
+      <Class name="BsuBeaviour" coverage="0" coveredlines="0" coverablelines="13" totallines="42" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="BussNeumbers" coverage="0" coveredlines="0" coverablelines="22" totallines="125" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="CarActorCollection" coverage="55.8" coveredlines="19" coverablelines="34" totallines="163" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="14" totalmethods="23" methodcoverage="60.8" />
+      <Class name="CarLanebehaviour" coverage="46.5" coveredlines="47" coverablelines="101" totallines="210" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="12" methodcoverage="33.3" />
+      <Class name="CarSensormsg" coverage="45.4" coveredlines="5" coverablelines="11" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="8" methodcoverage="100" />
+      <Class name="Clientbetter" coverage="8.6" coveredlines="9" coverablelines="104" totallines="188" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="13" methodcoverage="7.6" />
+      <Class name="ColourLogic" coverage="36.3" coveredlines="16" coverablelines="44" totallines="124" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="7" methodcoverage="42.8" />
+      <Class name="ComBlock" coverage="67.3" coveredlines="31" coverablelines="46" totallines="152" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="5" methodcoverage="80" />
+      <Class name="Creator" coverage="0" coveredlines="0" coverablelines="4" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="DepthTextureEnable" coverage="0" coveredlines="0" coverablelines="16" totallines="28" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="DetectIonLoop" coverage="0" coveredlines="0" coverablelines="5" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="FietsLaanBehaviour" coverage="31" coveredlines="9" coverablelines="29" totallines="69" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="9" methodcoverage="33.3" />
+      <Class name="FirstPersonController" coverage="0" coveredlines="0" coverablelines="48" totallines="84" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="7" methodcoverage="0" />
+      <Class name="FromControllerPakket" coverage="0" coveredlines="0" coverablelines="18" totallines="74" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="29" methodcoverage="0" />
+      <Class name="GloballaneManager" coverage="26" coveredlines="43" coverablelines="165" totallines="403" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="21" methodcoverage="33.3" />
+      <Class name="GuiManager" coverage="0" coveredlines="0" coverablelines="4" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="ImageLogicstate" coverage="14.2" coveredlines="3" coverablelines="21" totallines="40" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="5" methodcoverage="20" />
+      <Class name="IpSetupStart" coverage="16.6" coveredlines="2" coverablelines="12" totallines="26" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="3" methodcoverage="33.3" />
+      <Class name="LampostManager" coverage="56.8" coveredlines="29" coverablelines="51" totallines="92" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="11" methodcoverage="45.4" />
+      <Class name="LampWatch" coverage="55.5" coveredlines="15" coverablelines="27" totallines="55" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="7" methodcoverage="71.4" />
+      <Class name="LaneCommunicator" coverage="98.3" coveredlines="58" coverablelines="59" totallines="204" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="9" methodcoverage="88.8" />
+      <Class name="LaneInfoContainer" coverage="51.5" coveredlines="17" coverablelines="33" totallines="204" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="7" methodcoverage="28.5" />
+      <Class name="LaneLampSettr" coverage="8.4" coveredlines="5" coverablelines="59" totallines="104" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="7" methodcoverage="28.5" />
+      <Class name="LaneStateLocal" coverage="0" coveredlines="0" coverablelines="6" totallines="18" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="Lighting" coverage="77.4" coveredlines="24" coverablelines="31" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="6" methodcoverage="50" />
+      <Class name="LTrigger" coverage="0" coveredlines="0" coverablelines="8" totallines="44" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="MessageDecoder" coverage="0" coveredlines="0" coverablelines="16" totallines="58" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="Movement" coverage="7.7" coveredlines="15" coverablelines="194" totallines="302" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="20" methodcoverage="5" />
+      <Class name="MovementM2" coverage="73.5" coveredlines="114" coverablelines="155" totallines="252" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="16" totalmethods="18" methodcoverage="88.8" />
+      <Class name="NodeRoad" coverage="82.3" coveredlines="14" coverablelines="17" totallines="42" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="4" methodcoverage="75" />
+      <Class name="NodeToRoadEntry" coverage="41.6" coveredlines="10" coverablelines="24" totallines="46" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="5" methodcoverage="40" />
+      <Class name="NodeTrafficSpawn" coverage="0" coveredlines="0" coverablelines="13" totallines="37" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="PrebuildBlockInfo" coverage="45" coveredlines="50" coverablelines="111" totallines="168" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="11" methodcoverage="45.4" />
+      <Class name="PreBuildCorssPoints" coverage="100" coveredlines="3" coverablelines="3" totallines="17" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="1" methodcoverage="100" />
+      <Class name="recieverpakket.blocksMsg" coverage="0" coveredlines="0" coverablelines="3" totallines="77" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="6" methodcoverage="0" />
+      <Class name="recieverpakket.blocksMsg2" coverage="0" coveredlines="0" coverablelines="3" totallines="77" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="6" methodcoverage="0" />
+      <Class name="recieverpakket.LightFullLanemsg" coverage="0" coveredlines="0" coverablelines="1" totallines="77" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="recieverpakket.SignalGroup" coverage="0" coveredlines="0" coverablelines="2" totallines="77" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="Road" coverage="0" coveredlines="0" coverablelines="6" totallines="26" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="RoadNode" coverage="71.1" coveredlines="64" coverablelines="90" totallines="202" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="11" methodcoverage="72.7" />
+      <Class name="RunWarning" coverage="56" coveredlines="14" coverablelines="25" totallines="50" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="5" methodcoverage="80" />
+      <Class name="SceneAnnotation" coverage="0" coveredlines="0" coverablelines="13" totallines="185" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="SceneAnnotationEditor" coverage="4.3" coveredlines="4" coverablelines="91" totallines="185" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="6" methodcoverage="16.6" />
+      <Class name="ScreenSpacePlacement" coverage="0" coveredlines="0" coverablelines="16" totallines="34" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="SensorDatamanager" coverage="48.6" coveredlines="18" coverablelines="37" totallines="152" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="5" methodcoverage="80" />
+      <Class name="SignalGroup" coverage="0" coveredlines="0" coverablelines="2" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="SingleDetector" coverage="42.8" coveredlines="3" coverablelines="7" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
+      <Class name="SkyboxCamera" coverage="0" coveredlines="0" coverablelines="14" totallines="30" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="StateDisplay" coverage="0" coveredlines="0" coverablelines="17" totallines="40" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="5" methodcoverage="0" />
+      <Class name="TerrainTreeToggle" coverage="0" coveredlines="0" coverablelines="16" totallines="26" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="TimeDisplayer" coverage="0" coveredlines="0" coverablelines="3" totallines="15" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="vehicleDetector" coverage="100" coveredlines="32" coverablelines="32" totallines="60" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="5" methodcoverage="100" />
+      <Class name="WalkLanebehaviour" coverage="46.5" coveredlines="20" coverablelines="43" totallines="87" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="6" methodcoverage="33.3" />
+    </Assembly>
+    <Assembly name="Assembly-CSharp-Editor" classes="1" coverage="2.1" coveredlines="3" coverablelines="140" totallines="239" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="14" methodcoverage="7.1">
+      <Class name="ReadmeEditor" coverage="2.1" coveredlines="3" coverablelines="140" totallines="239" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="14" methodcoverage="7.1" />
+    </Assembly>
+  </Coverage>
+</CoverageReport>

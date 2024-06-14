@@ -76,6 +76,7 @@ public class GloballaneManager : MonoBehaviour
         StartCoroutine(getLane(timeInSec));
         StartCoroutine(Simutick(timeInSec));
         StartCoroutine(UpdatePakket(updateTimer));
+        StartCoroutine(gettestmsg());
     }
 
     public void SetOntruimingsTijdAuto(float tijd)
@@ -104,6 +105,13 @@ public class GloballaneManager : MonoBehaviour
         this.SignalGroup = GetSignalGroup();
     }
 
+    private IEnumerator gettestmsg()
+    {
+        //refresh simulation state 5 secs
+        yield return new WaitForSeconds(10);
+        SensorDatamanager.GetCarmsg();
+    }
+
     private IEnumerator UpdatePakket(float ticktime)
     {
         //yield return new WaitForSeconds(ticktime);
@@ -121,6 +129,7 @@ public class GloballaneManager : MonoBehaviour
             {
                 Communicator.jsonjapp = japsie;
             }
+
         }
     }
 

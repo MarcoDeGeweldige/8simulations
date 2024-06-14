@@ -2,12 +2,12 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-[System.Serializable]
-public class Pakket
-{
-    public string id;
-    public List<int> lights;
-}
+//[System.Serializable]
+//public class Pakket
+//{
+//    public string id;
+//    public List<int> lights;
+//}
 
 [Serializable]
 public class SignalGroup

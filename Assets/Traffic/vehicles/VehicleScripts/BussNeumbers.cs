@@ -79,47 +79,47 @@ public class BussNeumbers : MonoBehaviour
 public class busRoute
 {
 
-    public int tag = 22;
-    public bool GoestoNextBlock;
-    private bool IsAtFirstBlock = true;
+    //public int tag = 22;
+    //public bool GoestoNextBlock;
+    //private bool IsAtFirstBlock = true;
 
-    public ActorPathFinding block1path;
-    public Movement block1Movement;
-    public ActorPathFinding block2path;
-    public Movement block2Movement;
-
-
-    public void OnCreation()
-    {
+    //public ActorPathFinding block1path;
+    //public Movement block1Movement;
+    //public ActorPathFinding block2path;
+    //public Movement block2Movement;
 
 
-        IsAtFirstBlock = true;
-        block1Movement.FinishedWalk += Block1Movement_FinishedWalk;
+    //public void OnCreation()
+    //{
 
 
-    }
-
-    private void Block1Movement_FinishedWalk()
-    {
-        if (IsAtFirstBlock)
-        {
-            IsAtFirstBlock = false;
-            block1Movement.FinishedWalk -= Block1Movement_FinishedWalk;
-            block2Movement.FinishedWalk += Block2Movement_FinishedWalk;
-        }
-    }
-
-    private void Block2Movement_FinishedWalk()
-    {
-        block2Movement.FinishedWalk -= Block2Movement_FinishedWalk;
+    //    IsAtFirstBlock = true;
+    //    block1Movement.FinishedWalk += Block1Movement_FinishedWalk;
 
 
-    }
+    //}
 
-    private void OnDisable()
-    {
+    //private void Block1Movement_FinishedWalk()
+    //{
+    //    if (IsAtFirstBlock)
+    //    {
+    //        IsAtFirstBlock = false;
+    //        block1Movement.FinishedWalk -= Block1Movement_FinishedWalk;
+    //        block2Movement.FinishedWalk += Block2Movement_FinishedWalk;
+    //    }
+    //}
 
-        block1Movement.FinishedWalk -= Block1Movement_FinishedWalk;
-        block2Movement.FinishedWalk -= Block2Movement_FinishedWalk;
-    }
+    //private void Block2Movement_FinishedWalk()
+    //{
+    //    block2Movement.FinishedWalk -= Block2Movement_FinishedWalk;
+
+
+    //}
+
+    //private void OnDisable()
+    //{
+
+    //    block1Movement.FinishedWalk -= Block1Movement_FinishedWalk;
+    //    block2Movement.FinishedWalk -= Block2Movement_FinishedWalk;
+    //}
 }

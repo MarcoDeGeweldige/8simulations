@@ -5,10 +5,10 @@ public class MessageDecoder
 {
     public MockDatagenerator mockDatagenerator;
 
-    public Pakket DecodeMessageToJson(string msg)
-    {
-        return JsonUtility.FromJson<Pakket>(msg);
-    }
+    //public Pakket DecodeMessageToJson(string msg)
+    //{
+    //    return JsonUtility.FromJson<Pakket>(msg);
+    //}
 
     public recieverpakket.SignalGroup readmsg(string msg)
     {

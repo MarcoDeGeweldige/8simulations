@@ -11,10 +11,10 @@ public enum LaneId
 //this is only for sending detection data not for getting lamp states
 public class LaneCommunicator : MonoBehaviour
 {
-    public NodeType type;
+    public NodeType type = NodeType.HighSpeed;
 
     [SerializeField]
-    LaneId id;
+    LaneId id = LaneId.A;
     [SerializeField]
     int detectorNum;
 
@@ -32,7 +32,6 @@ public class LaneCommunicator : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(SensorDatamanager.testprint());
         SetupDetection();
         SensorDatamanager.AssignTomanager(this, id);
     }
@@ -67,7 +66,6 @@ public class LaneCommunicator : MonoBehaviour
 
     private void FarWaitAndDetectLus_OnTriggerChange(bool obj)
     {
-        Debug.Log("evenTriggerd, from node this is an Farlus trigger");
         if(laneInfoContainer.carSensormsg != null)
         {
             laneInfoContainer.carSensormsg.DetectFar = obj;
@@ -84,7 +82,6 @@ public class LaneCommunicator : MonoBehaviour
 
     private void NearWaitAndDetectLus_OnTriggerChange(bool obj)
     {
-        Debug.Log("evenTriggerd, from node this is an nearlus trigger" );
         laneInfoContainer.UpdateNearLus(obj);
     }
 
@@ -174,6 +171,10 @@ public class LaneInfoContainer
     /// </summary>
     public CarSensormsg GetCarSensormsg()
     {
+        if(carSensormsg == null)
+        {
+            return new CarSensormsg();
+        }
         return carSensormsg;
     }
 

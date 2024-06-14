@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
     private bool IsGreenLight;
     private bool _hasNodeRoute = false;
 
-    public event Action FinishedWalk;
+    //public event Action FinishedWalk;
 
     public float Maxspeed = 10;
     public float timeSinceStarted;
