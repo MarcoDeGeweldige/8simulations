@@ -97,7 +97,8 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
-
+*.xml
+*.XML
 # Chutzpah Test files
 _Chutzpah*
 
@@ -178,6 +179,8 @@ DocProject/Help/html
 
 # Click-Once directory
 publish/
+
+CodeCoverage/
 
 # Publish Web Output
 *.[Pp]ublish.xml
