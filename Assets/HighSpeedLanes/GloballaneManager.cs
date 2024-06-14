@@ -77,6 +77,7 @@ public class GloballaneManager : MonoBehaviour
         StartCoroutine(Simutick(timeInSec));
         StartCoroutine(UpdatePakket(updateTimer));
         StartCoroutine(gettestmsg());
+        StartCoroutine(RanomizeLamps());
     }
 
     public void SetOntruimingsTijdAuto(float tijd)
@@ -92,6 +93,16 @@ public class GloballaneManager : MonoBehaviour
     public void SetOntruimingsTijdLoper(float tijd)
     {
         this.OntruimingsTijdLoper = tijd;
+    }
+
+    IEnumerator RanomizeLamps()
+    {
+        while (true) // Loop indefinitely
+        {
+            yield return new WaitForSeconds(10);
+            DirectLampLink.UpdatRandomlyLights();
+
+        }
     }
 
     private IEnumerator getLane(int timeInSec)
@@ -147,6 +158,7 @@ public class GloballaneManager : MonoBehaviour
         {
             yield return new WaitForSeconds(timeInSec);
             SpawnRandomCars(SpawnMin, SpawnMax);
+            NodeTrafficSpawn.SpawnTrafficAtAllStartPoint();
         }
 
     }

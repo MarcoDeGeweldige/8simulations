@@ -74,8 +74,6 @@ public static class DirectLampLink
         ComBlockF.RandomizeLampStates();
     }
 
-
-
 }
 
 public class ComBlockLamp

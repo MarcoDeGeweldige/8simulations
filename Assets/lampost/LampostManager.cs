@@ -16,17 +16,16 @@ public class LampostManager : MonoBehaviour
 
     public List<Lighting> lightings = new List<Lighting>();
 
-    private void Awake()
-    {
-        LaneCommunicator communicator = GetComponentInChildren<LaneCommunicator>();
-        LaneId tempid = communicator.GetLaneId();
-        int templanenum =communicator.GetComlaneNr();
-        NodeType type = communicator.type;
-        DirectLampLink.AssignTomanager(this, tempid, type ,templanenum);
-    }
+
 
     private void Start()
     {
+
+        LaneCommunicator communicator = GetComponentInParent<LaneCommunicator>();
+        LaneId tempid = communicator.GetLaneId();
+        int templanenum = communicator.GetComlaneNr();
+        NodeType type = communicator.type;
+        DirectLampLink.AssignTomanager(this, tempid, type, templanenum);
         if (BuildOnStart)
         {
             SetUpLights();

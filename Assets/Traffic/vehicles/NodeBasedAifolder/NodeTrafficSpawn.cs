@@ -42,7 +42,7 @@ public class NodeTrafficSpawn : MonoBehaviour
 
         foreach (var item in EntrryNodesHighSpeed)
         {
-            GameObject kees = Instantiate(CarActorCollection.GetRandomCarPrefab(), item.GetPointPosition(), Quaternion.identity);
+            Instantiate(CarActorCollection.getCarPrefab(), item.GetPointPosition(), Quaternion.identity);
         }
         foreach (var item in EntrryNodesPedest)
         {

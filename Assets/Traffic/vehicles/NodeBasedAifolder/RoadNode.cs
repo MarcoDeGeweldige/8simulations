@@ -89,7 +89,7 @@ public class RoadNode : MonoBehaviour
             }
             else
             {
-                NextPoint = GetPointPosition() + (transform.forward * 50);
+                NextPoint = GetPointPosition() + (transform.forward * 5000);
             }
             if (IsBusLaneEntryNode)
             {

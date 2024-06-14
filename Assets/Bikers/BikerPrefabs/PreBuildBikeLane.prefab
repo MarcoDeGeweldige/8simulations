@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: lampostManager
       value: 
       objectReference: {fileID: 2188224180713607239}
+    - target: {fileID: 21011399113265837, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: detectorNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_Name
       value: WalkLane (1)
@@ -604,6 +608,10 @@ PrefabInstance:
       propertyPath: lampostManager
       value: 
       objectReference: {fileID: 3052172533144120278}
+    - target: {fileID: 21011399113265837, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: detectorNum
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_Name
       value: WalkLane (1)
@@ -702,6 +710,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FullLogicLampForBikeLanes
       objectReference: {fileID: 0}
+    - target: {fileID: 1506505825857121181, guid: bede86062b05eec419425c971a9aa321, type: 3}
+      propertyPath: detectorNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2663246079250379644, guid: bede86062b05eec419425c971a9aa321, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7
@@ -793,6 +805,10 @@ PrefabInstance:
       propertyPath: lampostManager
       value: 
       objectReference: {fileID: 8111447717303768975}
+    - target: {fileID: 21011399113265837, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: detectorNum
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_Name
       value: WalkLane

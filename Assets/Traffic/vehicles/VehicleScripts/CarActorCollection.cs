@@ -12,6 +12,8 @@ public class CarActorCollection : MonoBehaviour
 
     // Private field for priority vehicle prefab
     private GameObject PrioVehiclePrefab;
+    [SerializeField]
+    private GameObject CarPrefab;
 
     // Serialized fields for other prefabs
     [SerializeField]
@@ -29,6 +31,8 @@ public class CarActorCollection : MonoBehaviour
     public static GameObject staticBikerPrefab;
     private static GameObject staticbusPrefab;
     private static GameObject staticPrioVehiclePrefab;
+
+    private static GameObject staticRealCarPrefab;
     public static List<GameObject> StaticCarPrefabs { get; private set; }
 
     // Lists for storing detectors
@@ -51,6 +55,7 @@ public class CarActorCollection : MonoBehaviour
         staticbusPrefab = busPrefab;
         staticPrioVehiclePrefab = PrioVehiclePrefab;
         staticBikerPrefab = bikerPrefab;
+        staticRealCarPrefab = CarPrefab;
     }
 
     // Static method to get a random car prefab from the list
@@ -63,6 +68,11 @@ public class CarActorCollection : MonoBehaviour
         }
         int randomIndex = Random.Range(0, StaticCarPrefabs.Count);
         return StaticCarPrefabs[randomIndex];
+    }
+
+    public static GameObject getCarPrefab()
+    {
+        return staticRealCarPrefab;
     }
 
     // Static methods to get specific prefabs
