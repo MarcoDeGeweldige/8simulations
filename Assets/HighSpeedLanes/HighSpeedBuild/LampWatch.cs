@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LampWatch : MonoBehaviour
 {
-    private bool canGo = true;
+    [SerializeField]
+    private bool canGo = false;
     private bool SharesBus = false;
 
     private void Start()

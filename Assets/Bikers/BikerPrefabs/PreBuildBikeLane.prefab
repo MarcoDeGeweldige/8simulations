@@ -61,6 +61,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -170,6 +173,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -277,6 +283,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -371,6 +380,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockCode: empty
+  IsBlcokB: 0
+  HasBus: 0
+  BBusnr: 127
   BikeLaneIn: {fileID: 719814057625143148}
   BikeLaneOut: {fileID: 6949017577203729062}
   PedestrianLampIn: {fileID: 6405168907639408366}
@@ -516,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7383971550762010495, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.63
+      value: 1.36
       objectReference: {fileID: 0}
     - target: {fileID: 7383971550762010495, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -700,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2888245571616063110, guid: bede86062b05eec419425c971a9aa321, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.25
+      value: 5.91
       objectReference: {fileID: 0}
     - target: {fileID: 2888245571616063110, guid: bede86062b05eec419425c971a9aa321, type: 3}
       propertyPath: m_LocalPosition.y
