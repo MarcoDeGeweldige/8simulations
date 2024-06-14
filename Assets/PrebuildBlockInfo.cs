@@ -38,13 +38,6 @@ public class PrebuildBlockInfo : MonoBehaviour
         buildLaneList();
         buildPedestrianLaneList();
 
-        if (IsBlcokB)
-        {
-            setBblockLaneScripts(BikeLanes, true);
-            setBblockLaneScripts(PedestrianLanes, false);
-        }
-        setablockLaneScripts(BikeLanes, true);
-        setablockLaneScripts(PedestrianLanes, false);
     }
 
     public List<GameObject> GetPedestrianLanes() => PedestrianLanes;
@@ -73,79 +66,8 @@ public class PrebuildBlockInfo : MonoBehaviour
         PedestrianLanes.Add(PedestrianLampInR);
     }
 
-    private List<SingleDetector> GetLaneScripts(List<GameObject> objects, bool isBikeLane)
-    {
-        List<SingleDetector> singleDetectors = new List<SingleDetector>();
 
-        foreach (GameObject obj in objects)
-        {
-            if (isBikeLane)
-            {
-                singleDetectors.Add(obj.GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
-            }
-            else
-            {
-                singleDetectors.Add(obj.GetComponentInChildren<WalkLanebehaviour>().detectorLus);
-            }
-        }
 
-        return singleDetectors;
-    }
-
-    private void setablockLaneScripts(List<GameObject> objects, bool isBikeLane)
-    {
-        Debug.Log(objects.Count);
-        foreach (GameObject obj in objects)
-        {
-            if (isBikeLane)
-            {
-                FietsLaanBehaviour fietsLaanBehaviour = obj?.GetComponentInChildren<FietsLaanBehaviour>();
-                if (fietsLaanBehaviour != null)
-                {
-                    CarActorCollection.AddDetToFA(fietsLaanBehaviour.DetectorLus);
-                }
-                //singleDetectors.Add(obj.GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
-                //CarActorCollection.AddDetToFA(obj.GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
-            }
-            else
-            {
-                WalkLanebehaviour walkLaneBehaviour = obj?.GetComponentInChildren<WalkLanebehaviour>();
-                if (walkLaneBehaviour != null)
-                {
-                    CarActorCollection.AddDet(walkLaneBehaviour.detectorLus);
-                }
-                //singleDetectors.Add(obj.GetComponentInChildren<WalkLanebehaviour>().detectorLus);
-                //CarActorCollection.AddDet((obj.GetComponentInChildren<WalkLanebehaviour>().detectorLus));
-            }
-        }
-    }
-
-    private void setBblockLaneScripts(List<GameObject> objects, bool isBikeLane)
-    {
-        foreach (GameObject obj in objects)
-        {
-            if (isBikeLane)
-            {
-                FietsLaanBehaviour fietsLaanBehaviour = obj.GetComponentInChildren<FietsLaanBehaviour>();
-                if (fietsLaanBehaviour != null)
-                {
-                    CarActorCollection.AddDetoFB(obj.GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
-                }
-
-                //singleDetectors.Add(obj.GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
-                //CarActorCollection.AddDetoFB(obj.GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
-            }
-            else
-            {
-                WalkLanebehaviour walkLaneBehaviour = obj.GetComponentInChildren<WalkLanebehaviour>();
-                if (walkLaneBehaviour != null)
-                {
-                    //singleDetectors.Add(obj.GetComponentInChildren<WalkLanebehaviour>().detectorLus);
-                    CarActorCollection.AddDetToWB((obj.GetComponentInChildren<WalkLanebehaviour>().detectorLus));
-                }
-            }
-        }
-    }
 
     public void Setlamps(List<int> BikeLampsStates, List<int> PedestrianlampsStates)
     {

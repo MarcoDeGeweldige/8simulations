@@ -80,38 +80,34 @@ public class RoadNode : MonoBehaviour
 
         }
 
-        //if (!IsWorldEntryNode)
-        //{
-        //    if (NextNode != null)
-        //    {
-        //        NextPoint = NextNode.GetPointPosition();
+        if (!IsWorldEntryNode)
+        {
+            if (NextNode != null)
+            {
+                NextPoint = NextNode.GetPointPosition();
 
-        //    }
-        //    else
-        //    {
-        //        NextPoint = GetPointPosition() + (transform.forward * 50);
-        //    }
-        //    if (IsBusLaneEntryNode)
-        //    {
-        //        BusNode = FindBusNode();
-        //    }
-        //        if (NextNode != null && SwitchLaneNode != null)
-        //        {
-        //            this.CanSwitchLaneAtNode = true;
+            }
+            else
+            {
+                NextPoint = GetPointPosition() + (transform.forward * 50);
+            }
+            if (IsBusLaneEntryNode)
+            {
+                BusNode = FindBusNode();
+            }
+            if (NextNode != null && SwitchLaneNode != null)
+            {
+                this.CanSwitchLaneAtNode = true;
 
-        //        }
-        //}
-        //else
-        //{
-        //    //world spawn here, set lane as an public thing to spawn
-        //    NodeTrafficSpawn.AssignToEntryNode(this, type);
+            }
+        }
+        else
+        {
+            //world spawn here, set lane as an public thing to spawn
+            NodeTrafficSpawn.AssignToEntryNode(this, type);
 
-        //}
-
-
-
+        }
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -125,8 +121,6 @@ public class RoadNode : MonoBehaviour
 
             if (IsDetector)
             {
-
-                Debug.Log("detected vehicle on newlus");
                 OnTriggerChange.Invoke(true);
             }
         }

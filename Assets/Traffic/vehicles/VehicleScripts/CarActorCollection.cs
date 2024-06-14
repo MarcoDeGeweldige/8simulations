@@ -75,13 +75,13 @@ public class CarActorCollection : MonoBehaviour
     public static GameObject GetBikerPrefab() => staticBikerPrefab;
 
     // Static methods to add detectors to specific lists
-    public static void AddDet(SingleDetector singleDetector) => Singleswa.Add(singleDetector);
+    //public static void AddDet(SingleDetector singleDetector) => Singleswa.Add(singleDetector);
 
-    public static void AddDetToWB(SingleDetector singleDetector) => Singleswb.Add(singleDetector);
+    //public static void AddDetToWB(SingleDetector singleDetector) => Singleswb.Add(singleDetector);
 
-    public static void AddDetToFA(SingleDetector singleDetector) => Singlesfa.Add(singleDetector);
+    //public static void AddDetToFA(SingleDetector singleDetector) => Singlesfa.Add(singleDetector);
 
-    public static void AddDetoFB(SingleDetector singleDetector) => Singlesfb.Add(singleDetector);
+    //public static void AddDetoFB(SingleDetector singleDetector) => Singlesfb.Add(singleDetector);
 }
 
 //public class CarActorCollection : MonoBehaviour
