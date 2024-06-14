@@ -407,6 +407,7 @@ ExportedObj/
 *.fbx.meta
 *.fbx
 *.prefab
+*.prefab.meta
 *.mat
 *.jpg
 *.png
@@ -429,6 +430,8 @@ ExportedObj/
 *.playable
 *.psd
 *.renderTexture
+*.unity
+*.cd
 
 # Unity3D generated file on crash reports
 sysinfo.txt
