@@ -41,6 +41,10 @@ public class LaneCommunicator : MonoBehaviour
         return detectorNum;
     }
 
+    public LaneId GetLaneId()
+    {
+        return id;
+    }
 
     private void SetupDetection()
     {

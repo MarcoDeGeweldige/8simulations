@@ -156,39 +156,10 @@ public class CarLanebehaviour : MonoBehaviour
     public void SetLampLight(int state)
     {
         LampostManager.SetLight(state);
+
+
     }
 
-    // Get position of traffic light entrance and the near loop
-    // Here you will have to wait if there is a traffic light
-    //public Vector3 GetLaneStartSignal()
-    //{
-    //    return this.NearLus;
-    //}
-
-    // Call this before turning to get the lane exit position
-    //public Vector3 GeLaneExit()
-    //{
-    //    return this.OffsettedStartPos;
-    //}
-
-    // Get the last position of the lane (exit position)
-    //public Vector3 GetLaneExit()
-    //{
-    //    // return nodes.EndPos;
-    //    return LaneRoad.GetEndPosition().position;
-    //}
-
-    //// Enter the lane at the start position
-    //public Vector3 GetLaneStart()
-    //{
-    //    return FarLus.transform.position;
-    //}
-
-    //// Get spawn position for cars
-    //public Vector3 GetSpwanPos()
-    //{
-    //    return FarLus.transform.position + FarLus.transform.forward * FarLaneDistance + transform.forward * 3000 + transform.up * 1000;
-    //}
 
     // Get trigger information
     public CarSensormsg getTriggerInfo()
@@ -208,3 +179,4 @@ public class CarLanebehaviour : MonoBehaviour
         }
     }
 }
+
