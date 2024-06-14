@@ -7,7 +7,7 @@ public class LampostManager : MonoBehaviour
     public bool BuildOnStart = false;
     public bool Isgreen = false;
 
-    public LaneCommunicator communicator;
+   
     //the internal behaviour for logic related stuff
     public ColourLogic ColourLogic;
 
@@ -18,13 +18,11 @@ public class LampostManager : MonoBehaviour
 
     private void Awake()
     {
-        LaneId tempid = GetComponent<LaneCommunicator>().GetLaneId();
-        int templanenum = GetComponent<LaneCommunicator>().GetComlaneNr();
-        NodeType type = GetComponent<LaneCommunicator>().type;
+        LaneCommunicator communicator = GetComponentInChildren<LaneCommunicator>();
+        LaneId tempid = communicator.GetLaneId();
+        int templanenum =communicator.GetComlaneNr();
+        NodeType type = communicator.type;
         DirectLampLink.AssignTomanager(this, tempid, type ,templanenum);
-        communicator = GetComponent<LaneCommunicator>();
-
-        
     }
 
     private void Start()

@@ -3,6 +3,7 @@
 
 
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class DirectLampLink
 {
@@ -63,6 +64,15 @@ public static class DirectLampLink
         ComBlockE.UpdateAllLamps(signalGroup.blocksMsg2.E);
         ComBlockF.UpdateAllLamps(signalGroup.blocksMsg2.F);
     }
+    public static void UpdatRandomlyLights()
+    {
+        ComBlockA.RandomizeLampStates();
+        ComBlockB.RandomizeLampStates();
+        ComBlockC.RandomizeLampStates();
+        ComBlockD.RandomizeLampStates();
+        ComBlockE.RandomizeLampStates();
+        ComBlockF.RandomizeLampStates();
+    }
 
 
 
@@ -76,9 +86,6 @@ public class ComBlockLamp
     int maxBikeCum;
 
     int maxPedCum;
-
-
-
 
     //Car lanes can parse busses and prio vehicles
     List<LampostManager> communicatorsCars = new List<LampostManager>();
@@ -94,6 +101,23 @@ public class ComBlockLamp
         this.maxBikeCum = maxBikeCum;
         //CreateContainerList(ref communicatorsCars, maxCarCum);
         //CreateBikeAndPedlists();
+    }
+
+    public void RandomizeLampStates()
+    {
+        setRangedStates(ref communicatorsCars);
+        setRangedStates(ref communicatorsPeds);
+        setRangedStates(ref communicatorsBikes);
+        
+
+    }
+
+    private void setRangedStates(ref List<LampostManager> lamposts)
+    {
+        foreach(LampostManager lampost in lamposts)
+        {
+            lampost.SetLight(UnityEngine.Random.Range(-1, 3));
+        }
     }
 
 
