@@ -5,7 +5,7 @@ using UnityEngine;
 public class vehicleDetector : MonoBehaviour
 {
     public float ScanTime = 0.1f;
-    public float detectionRange = 5f; // The range of detection in front of the vehicle
+    public float detectionRange = 10f; // The range of detection in front of the vehicle
     public float longScanRange = 20f;
     public LayerMask vehicleLayer; // Layer mask to filter out non-vehicle objects
 
@@ -19,6 +19,13 @@ public class vehicleDetector : MonoBehaviour
 
         // Start the coroutine when needed (e.g., when a button is clicked)
         StartCoroutine(ScanFrontl(ScanTime));
+    }
+
+    public void halveScanRange()
+    {
+        detectionRange = detectionRange * 0.5f;
+        longScanRange = longScanRange * 0.5f;
+
     }
 
     private IEnumerator ScanFrontl(float time)
@@ -49,6 +56,7 @@ public class vehicleDetector : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, detectionRange, vehicleLayer))
         {
+            Debug.DrawLine(transform.position, hit.point);
             // Detected a vehicle in front
             OnVehcleDetected?.Invoke(true);
         }

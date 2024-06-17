@@ -77,7 +77,7 @@ public class GloballaneManager : MonoBehaviour
         StartCoroutine(Simutick(timeInSec));
         StartCoroutine(UpdatePakket(updateTimer));
         StartCoroutine(gettestmsg());
-        StartCoroutine(RanomizeLamps());
+        //StartCoroutine(RanomizeLamps());
     }
 
     public void SetOntruimingsTijdAuto(float tijd)
@@ -135,7 +135,12 @@ public class GloballaneManager : MonoBehaviour
         while (true) // Loop indefinitely
         {
             yield return new WaitForSeconds(ticktime);
-            string japsie = JsonConvert.SerializeObject(SignalGroup);
+            //SignalGroup message = SensorDatamanager.GetSignalGroup();
+
+            
+            string japsie = JsonConvert.SerializeObject(SensorDatamanager.GetSignalGroup());
+
+            Debug.Log(japsie);
             if (Communicator != null)
             {
                 Communicator.jsonjapp = japsie;
@@ -157,7 +162,7 @@ public class GloballaneManager : MonoBehaviour
         while (true && LoopSpawn)
         {
             yield return new WaitForSeconds(timeInSec);
-            SpawnRandomCars(SpawnMin, SpawnMax);
+            //SpawnRandomCars(SpawnMin, SpawnMax);
             NodeTrafficSpawn.SpawnTrafficAtAllStartPoint();
         }
 

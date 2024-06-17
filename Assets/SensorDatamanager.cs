@@ -52,6 +52,51 @@ public static class SensorDatamanager
         }
     }
 
+    public static void AddNumberToBuslist(int num, LaneId laneId)
+    {
+        switch (laneId)
+        {
+
+            case LaneId.B:
+                RegisterLineToLane(ref ComBlockB, num);
+                break;
+
+            case LaneId.E:
+                RegisterLineToLane(ref ComBlockE, num);
+                break;
+
+            default:
+                return;
+        }
+    }
+    public static void RemoveNumberToBuslist(int num, LaneId laneId)
+    {
+        switch (laneId)
+        {
+
+            case LaneId.B:
+                RemoveLineToLane(ref ComBlockB, num);
+                break;
+
+            case LaneId.E:
+                RemoveLineToLane(ref ComBlockE, num);
+                break;
+
+            default:
+                return;
+        }
+    }
+
+    public static void RegisterLineToLane(ref ComBlock block, int number)
+    {
+        block.AddBusNumberToList(number);
+    }
+    public static void RemoveLineToLane(ref ComBlock block, int number)
+    {
+        block.RemoveBusnumberFromList(number);
+    }
+
+
     public static void AddToComblock(ref ComBlock block, ref LaneCommunicator laneCommunicator)
     {
         block.AddToList(ref laneCommunicator);
@@ -126,6 +171,7 @@ public class ComBlock
     //optional add only when needed
     List<LaneCommunicator> communicatorsBikes = new List<LaneCommunicator>();
     List<LaneCommunicator> communicatorsPeds = new List<LaneCommunicator>();
+    //List<int> bussnumbers = new List<int>();
 
     List<int> Bussnumbers = new List<int>();
 
@@ -134,8 +180,27 @@ public class ComBlock
         this.maxCarCum = maxCarCum;
         this.maxBikeCum = maxBikeCum;
         this.messageType = messageType;
-        //CreateContainerList(ref communicatorsCars, maxCarCum);
-        //CreateBikeAndPedlists();
+        CreateContainerList(ref communicatorsCars, maxCarCum);
+        CreateBikeAndPedlists();
+
+    }
+
+    public void AddBusNumberToList(int num)
+    {
+        if (Bussnumbers.Contains(num))
+        {
+            return;
+        }
+        Debug.Log("addednumber");
+        Bussnumbers.Add(num);
+    }
+    public void RemoveBusnumberFromList(int num)
+    {
+        if (Bussnumbers.Contains(num))
+        {
+            Bussnumbers.Remove(num);
+        }
+     
     }
 
     public blockmsg GetNormalBlock()
@@ -177,8 +242,12 @@ public class ComBlock
         {
             normal.Walkers.Add(item.GetLaneInfoContainer().singledetector);
         }
+        //normal.LBusses = communicatorBus[0].bussnumbers;
 
+        
         normal.LBusses = Bussnumbers;
+        //normal.LBusses.AddRange(Bussnumbers);
+        //normal.LBusses.Add(1000);
 
 
         return normal;
@@ -221,17 +290,38 @@ public class ComBlock
         {
             case NodeType.Pedestrian:
                 Debug.Log("adding new pedestrian");
-                communicatorsPeds.Add(laneCommunicator);
+                if(laneCommunicator.GetComlaneNr() <= communicatorsPeds.Count - 1)
+                {
+                    communicatorsPeds[laneCommunicator.GetComlaneNr()] = laneCommunicator;
+                }
+                //communicatorsPeds.Add(laneCommunicator);
                 //communicatorsPeds[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 break;
             case NodeType.Biker:
                 Debug.Log("adding new bike");
-                communicatorsBikes.Add(laneCommunicator);
+                //communicatorsBikes.Add(laneCommunicator);
+                if(laneCommunicator.GetComlaneNr() <= communicatorsBikes.Count - 1)
+                {
+                    communicatorsBikes[laneCommunicator.GetComlaneNr()] = laneCommunicator;
+                }
                 //communicatorsBikes[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 break;
             case NodeType.HighSpeed:
-                Debug.Log("adding new car");
-                communicatorsCars.Add(laneCommunicator);
+                Debug.Log("lane assing" + communicatorsCars.Count);
+
+                if(laneCommunicator.GetComlaneNr() <= communicatorsCars.Count - 1)
+                {
+                    communicatorsCars[laneCommunicator.GetComlaneNr()] = laneCommunicator;
+                }
+                //if (laneCommunicator.IsBusonly)
+                //{
+                //   communicatorBus.Add(laneCommunicator);
+                //}
+                //else
+                //{
+                //    communicatorsCars[laneCommunicator.GetComlaneNr()] = laneCommunicator;
+                //}
+                //communicatorsCars.Add(laneCommunicator);
                 //communicatorsCars[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 break;
             default:

@@ -20,9 +20,13 @@ public class MovementM2 : MonoBehaviour
     public float SlowDownRate = 0.1f;
     public float SpeedUpRate = 0.5f;
 
+    public bool IsPrio = true;
+
     public Rigidbody body;
 
     private ActorNodeReader NodeReader;
+
+    public NodeType actorNodeType = NodeType.HighSpeed;
 
     public Vector3 ColliderSize = new Vector3(1.8f, 1.3f, 2.04f);
 
@@ -59,11 +63,13 @@ public class MovementM2 : MonoBehaviour
     private void Awake()
     {
         currentSpeed = 5;
-        MaxSpeed = 10;
+        MaxSpeed = 20;
         MinSpeed = 0;
         this.TargetPosition = transform.position + transform.forward * 500;
         NodeReader = this.gameObject.AddComponent<ActorNodeReader>();
+        NodeReader.SetActorType(actorNodeType);
         NodeReader.SetIfBus(this.IsBus);
+        IsPrio = true;
     }
 
     void Start()
@@ -74,6 +80,11 @@ public class MovementM2 : MonoBehaviour
         }
         this.GetComponent<BoxCollider>().size = this.ColliderSize;
         _SetVehicleDetectors();
+        if(actorNodeType != NodeType.HighSpeed)
+        {
+            vehicleDetector.halveScanRange();
+            
+        }
 
     }
 

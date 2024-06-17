@@ -81,13 +81,13 @@ public class CarLanebehaviour : MonoBehaviour
     }
 
 
-    public void updateNearlus(bool state)
+    public void updateNearlus(bool state, bool isPrio)
     {
 
         this.DetectorLus.DetectNear = state;
     }
 
-    public void updateFarLus(bool state)
+    public void updateFarLus(bool state, bool isPrio)
     {
         this.DetectorLus.DetectFar = state;
     }

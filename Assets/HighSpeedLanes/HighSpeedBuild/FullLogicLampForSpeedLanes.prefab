@@ -155,6 +155,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c5eeb2da5e4774a940595be258a92b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8283540177074599028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7799701357515313652, guid: a440709a2ba037842b8486fa9f0bac27, type: 3}
+  m_PrefabInstance: {fileID: 2218885831267984768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c5eeb2da5e4774a940595be258a92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4992411641143871172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -264,6 +275,14 @@ PrefabInstance:
       propertyPath: Parent
       value: 
       objectReference: {fileID: 3135666527429960551}
+    - target: {fileID: 7130960223374984532, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
+      propertyPath: farlus
+      value: 
+      objectReference: {fileID: 8283540177074599028}
+    - target: {fileID: 7130960223374984532, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
+      propertyPath: nearlus
+      value: 
+      objectReference: {fileID: 7456952373594559458}
     - target: {fileID: 7130960223374984532, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
       propertyPath: triggerFar
       value: 

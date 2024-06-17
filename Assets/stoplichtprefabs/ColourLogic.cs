@@ -78,7 +78,7 @@ public class ColourLogic : MonoBehaviour
     {
         LampLights[0].Status = false;
         LampLights[2].Status = false;
-        watch.CanGo = true;
+        watch.CanGo = false;
         //1
         CurrentState = 1;
         LampLights[1].Status = true;

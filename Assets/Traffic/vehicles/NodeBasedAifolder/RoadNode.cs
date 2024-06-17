@@ -26,6 +26,8 @@ public class RoadNode : MonoBehaviour
 
     //the position of the next node
     public Vector3 NextPoint = Vector3.zero;
+    //for interaction with needed groeps
+    //public NodeType nodeType = NodeType.HighSpeed;
 
     //assign this to enable routing 
     public RoadNode NextNode;
@@ -39,15 +41,33 @@ public class RoadNode : MonoBehaviour
 
     public bool IsDetector;
 
-    public event Action<bool> OnTriggerChange;
+    public event Action<bool, bool> OnTriggerChange;
+    public event Action<int> OnBusLeave;
+    public event Action<int> OnBusEnter;
+    public event Action<bool, int> OnTriggerChangeWithBus;
 
 
     private void Awake()
     {
         this.GetComponent<BoxCollider>().isTrigger = true;
         this.GetComponent<MeshRenderer>().enabled = false;
+        if(SwitchLaneNode != null)
+        {
+            this.CanSwitchLaneAtNode = true;
+        }
+        
+        
     }
 
+    public void AssingLampostManager(ref LampWatch watch)
+    {
+        if (System.Object.ReferenceEquals(null, LampWatch))
+        {
+            this.LampWatch = watch;
+            this.IsSTopPoint = true;
+
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,6 +80,7 @@ public class RoadNode : MonoBehaviour
         else
         {
             this.IsSTopPoint = true;
+            this.IsDetector = true;
         }
         if (NextNode != null)
         {
@@ -74,11 +95,7 @@ public class RoadNode : MonoBehaviour
         {
             BusNode = FindBusNode();
         }
-        if (NextNode != null && SwitchLaneNode != null)
-        {
-            this.CanSwitchLaneAtNode = true;
 
-        }
 
         if (!IsWorldEntryNode)
         {
@@ -95,11 +112,7 @@ public class RoadNode : MonoBehaviour
             {
                 BusNode = FindBusNode();
             }
-            if (NextNode != null && SwitchLaneNode != null)
-            {
-                this.CanSwitchLaneAtNode = true;
 
-            }
         }
         else
         {
@@ -109,20 +122,64 @@ public class RoadNode : MonoBehaviour
         }
     }
 
+    //public Vector3 PickRandomNodeAtSwitch()
+    //{
+    //    if(SwitchLaneNode != null)
+    //    {
+    //        int spawn = UnityEngine.Random.Range(0, 2);
+
+    //        if (spawn == 1)
+    //        {
+    //            return SwitchLaneNode.GetPointPosition();
+    //        }
+
+    //    }
+    //    return 
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Actor"))
         {
-            other.GetComponent<ActorNodeReader>().ReadNodeInfo(this);
-            if (this.ISWorldBound)
+            //other.GetComponent<ActorNodeReader>().ReadNodeInfo(this);
+            if (other.GetComponent<ActorNodeReader>().ReadNodeInfo(this))
             {
-                other.GetComponentInChildren<ActorNodeReader>().DisableActor();
-            }
+                ActorNodeReader actorNode = other.GetComponent<ActorNodeReader>();
 
-            if (IsDetector)
-            {
-                OnTriggerChange.Invoke(true);
+
+                if (IsDetector)
+                {
+                    if (!actorNode.IsBus)
+                    {
+                        OnTriggerChange.Invoke(true, actorNode.IsPrioV);
+
+
+                    }
+                    else
+                    {
+                        OnTriggerChange.Invoke(true, actorNode.IsPrioV);
+
+                        OnBusEnter?.Invoke(actorNode.GetBunNumber());
+                        
+                        //OnBusEnter.Invoke(actorNode.GetBunNumber());
+                    }
+                }
+
+                //if (IsDetector)
+                //{
+                //    OnTriggerChange.Invoke(true);
+                //}
+
+                
             }
+            //if (this.ISWorldBound)
+            //{
+            //    other.GetComponentInChildren<ActorNodeReader>().DisableActor();
+            //}
+
+            //if (IsDetector)
+            //{
+            //    OnTriggerChange.Invoke(true);
+            //}
         }
         else
         {
@@ -130,12 +187,30 @@ public class RoadNode : MonoBehaviour
         }
 
     }
+
+
+    
     private void OnTriggerExit(Collider other)
     {
-        if (IsDetector)
+        if (other.CompareTag("Actor"))
         {
-            OnTriggerChange.Invoke(true);
+            //other.GetComponent<ActorNodeReader>().ReadNodeInfo(this);
+            if (other.GetComponent<ActorNodeReader>().ReadNodeInfo(this))
+            {
+                ActorNodeReader actorNode = other.GetComponent<ActorNodeReader>();
+                if (actorNode.IsBus)
+                {
+                    OnBusLeave?.Invoke(actorNode.GetBunNumber());
+                }
+                else
+                {
+                    OnTriggerChange?.Invoke(false, actorNode.IsPrioV);
+                }
+
+
+            }
         }
+
     }
 
     public Vector3 GetPointPosition()
@@ -148,7 +223,7 @@ public class RoadNode : MonoBehaviour
 
         if (CanSwitchLaneAtNode)
         {
-            int c = UnityEngine.Random.Range(1, 3);
+            int c = UnityEngine.Random.Range(0, 2);
 
             if (c == 1)
             {
