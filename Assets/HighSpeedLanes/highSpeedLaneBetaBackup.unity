@@ -4945,6 +4945,7 @@ MonoBehaviour:
   - {fileID: 7318164423285427518, guid: 7e44f93470bd32147b338f16c550b600, type: 3}
   - {fileID: 8829800619140264709, guid: 682f4098630a1e44e855249acc441280, type: 3}
   - {fileID: 2314856236330213024, guid: 8973b5063886a8c46b000cee13e6fa20, type: 3}
+  - {fileID: 3261666316999386146, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
   PedPrefabs:
   - {fileID: 3201386167453129480, guid: d82c47edcb0121d4493f3ac974c3a3f5, type: 3}
   BikePrefabs:
@@ -10916,7 +10917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: timeInSec
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: LaneScalar
@@ -14923,7 +14924,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9843137}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9843137}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -30784,6 +30785,14 @@ PrefabInstance:
       propertyPath: directionNum
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2139934046200587431, guid: 980109b882da0d14e94a8e2811f1c1c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139934046200587431, guid: 980109b882da0d14e94a8e2811f1c1c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 107.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2388914155863108739, guid: 980109b882da0d14e94a8e2811f1c1c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5
@@ -32753,6 +32762,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a72c76776e576924a9f1175664c94dce, type: 3}
+--- !u!1001 &7838147458756068904
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 63.91449
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -138.68295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416648204953830050, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261666316999386146, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
+      propertyPath: m_Name
+      value: PrioCarVoertuig
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77f6522c14834a64fa198b671d6db9e7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -32859,3 +32925,4 @@ SceneRoots:
   - {fileID: 1946762058}
   - {fileID: 994384749}
   - {fileID: 1117009281046735043}
+  - {fileID: 7838147458756068904}

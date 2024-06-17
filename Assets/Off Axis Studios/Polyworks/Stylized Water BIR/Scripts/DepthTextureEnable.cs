@@ -6,7 +6,7 @@ public class DepthTextureEnable : MonoBehaviour
 {
     private Camera mainCam;
 
-    void OnEnable()
+    private void OnEnable()
     {
         if (mainCam == null)
         {

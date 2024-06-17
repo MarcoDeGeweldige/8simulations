@@ -37,7 +37,6 @@ public class PrebuildBlockInfo : MonoBehaviour
     {
         buildLaneList();
         buildPedestrianLaneList();
-
     }
 
     public List<GameObject> GetPedestrianLanes() => PedestrianLanes;
@@ -65,9 +64,6 @@ public class PrebuildBlockInfo : MonoBehaviour
         PedestrianLanes.Add(PedestriianLampMidR);
         PedestrianLanes.Add(PedestrianLampInR);
     }
-
-
-
 
     public void Setlamps(List<int> BikeLampsStates, List<int> PedestrianlampsStates)
     {

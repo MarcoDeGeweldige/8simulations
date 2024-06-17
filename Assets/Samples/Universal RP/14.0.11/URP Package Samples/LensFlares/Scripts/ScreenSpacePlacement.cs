@@ -5,12 +5,13 @@ public class ScreenSpacePlacement : MonoBehaviour
 {
     [SerializeField]
     private Camera m_Cam;
+
     [SerializeField]
     private Transform m_FlareObject;
 
     private bool m_MouseDown;
 
-    void OnGUI()
+    private void OnGUI()
     {
         Event currentEvent = Event.current;
         Vector2 mousePos = new Vector2();

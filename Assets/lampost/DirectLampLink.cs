@@ -1,20 +1,13 @@
-﻿
-
-
-
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public static class DirectLampLink
 {
-
     private static ComBlockLamp ComBlockA = new ComBlockLamp(4, 2);
     private static ComBlockLamp ComBlockB = new ComBlockLamp(4, 2);
     private static ComBlockLamp ComBlockC = new ComBlockLamp(4, 0);
     private static ComBlockLamp ComBlockD = new ComBlockLamp(4, 0);
     private static ComBlockLamp ComBlockE = new ComBlockLamp(3, 2);
     private static ComBlockLamp ComBlockF = new ComBlockLamp(4, 2);
-
 
     public static void AssignTomanager(LampostManager communicator, LaneId laneId, NodeType nodeType, int nodnum)
     {
@@ -56,7 +49,6 @@ public static class DirectLampLink
 
     public static void UpdateLights(recieverpakket.SignalGroup signalGroup)
     {
-
         ComBlockA.UpdateAllLamps(signalGroup.blocksMsg.A);
         ComBlockB.UpdateAllLamps(signalGroup.blocksMsg.B);
         ComBlockC.UpdateAllLamps(signalGroup.blocksMsg.C);
@@ -64,6 +56,7 @@ public static class DirectLampLink
         ComBlockE.UpdateAllLamps(signalGroup.blocksMsg2.E);
         ComBlockF.UpdateAllLamps(signalGroup.blocksMsg2.F);
     }
+
     public static void UpdatRandomlyLights()
     {
         ComBlockA.RandomizeLampStates();
@@ -73,25 +66,26 @@ public static class DirectLampLink
         ComBlockE.RandomizeLampStates();
         ComBlockF.RandomizeLampStates();
     }
-
 }
 
 public class ComBlockLamp
 {
     //the max car com to acummilate
-    int maxCarCum;
+    private int maxCarCum;
 
-    int maxBikeCum;
+    private int maxBikeCum;
 
-    int maxPedCum;
+    private int maxPedCum;
 
     //Car lanes can parse busses and prio vehicles
-    List<LampostManager> communicatorsCars = new List<LampostManager>();
-    //optional add only when needed
-    List<LampostManager> communicatorsBikes = new List<LampostManager>();
-    List<LampostManager> communicatorsPeds = new List<LampostManager>();
+    private List<LampostManager> communicatorsCars = new List<LampostManager>();
 
-    List<LampostManager> Bussnumbers = new List<LampostManager>();
+    //optional add only when needed
+    private List<LampostManager> communicatorsBikes = new List<LampostManager>();
+
+    private List<LampostManager> communicatorsPeds = new List<LampostManager>();
+
+    private List<LampostManager> Bussnumbers = new List<LampostManager>();
 
     public ComBlockLamp(int maxCarCum, int maxBikeCum)
     {
@@ -106,18 +100,15 @@ public class ComBlockLamp
         setRangedStates(ref communicatorsCars);
         setRangedStates(ref communicatorsPeds);
         setRangedStates(ref communicatorsBikes);
-        
-
     }
 
     private void setRangedStates(ref List<LampostManager> lamposts)
     {
-        foreach(LampostManager lampost in lamposts)
+        foreach (LampostManager lampost in lamposts)
         {
             lampost.SetLight(UnityEngine.Random.Range(-1, 3));
         }
     }
-
 
     public void UpdateAllLamps(recieverpakket.LightCarLanemsg lightLanemsg)
     {
@@ -141,8 +132,8 @@ public class ComBlockLamp
         {
             communicatorsPeds[i].SetLight(lightLanemsg.Walkers[i]);
         }
-
     }
+
     public void UpdateAllLamps(recieverpakket.LightFullLanemsg lightLanemsg)
     {
         for (int i = 0; i < lightLanemsg.Cars.Count; i++)
@@ -161,9 +152,7 @@ public class ComBlockLamp
         {
             Bussnumbers[i].SetLight(lightLanemsg.busje[i]);
         }
-
     }
-
 
     private void CreateBikeAndPedlists()
     {
@@ -172,11 +161,10 @@ public class ComBlockLamp
             maxPedCum = maxBikeCum * 2;
             CreateContainerList(ref communicatorsBikes, maxBikeCum);
             CreateContainerList(ref communicatorsPeds, maxPedCum);
-
         }
     }
 
-    void CreateContainerList(ref List<LampostManager> communicators, int maxAmount)
+    private void CreateContainerList(ref List<LampostManager> communicators, int maxAmount)
     {
         communicators = new List<LampostManager>();
         for (int i = 0; i < maxAmount; i++)
@@ -194,19 +182,21 @@ public class ComBlockLamp
                 communicatorsPeds.Add(laneCommunicator);
                 //communicatorsPeds[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 break;
+
             case NodeType.Biker:
 
                 communicatorsBikes.Add(laneCommunicator);
                 //communicatorsBikes[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 break;
+
             case NodeType.HighSpeed:
 
                 communicatorsCars.Add(laneCommunicator);
                 //communicatorsCars[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 break;
+
             default:
                 break;
         }
     }
-
 }

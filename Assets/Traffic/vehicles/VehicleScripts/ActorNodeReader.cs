@@ -1,11 +1,8 @@
 using UnityEngine;
 
-
-//handle the information of nodes 
+//handle the information of nodes
 public class ActorNodeReader : MonoBehaviour
 {
-
-
     public Vector3 NextNodePos;
 
     public bool IsWaitPoint;
@@ -18,10 +15,8 @@ public class ActorNodeReader : MonoBehaviour
 
     public NodeType ActorType;
 
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         MovementM2 = this.GetComponent<MovementM2>();
         IsPrioV = MovementM2.IsPrio;
@@ -44,7 +39,7 @@ public class ActorNodeReader : MonoBehaviour
 
     public int GetNewBusNumber()
     {
-        return Random.Range(0,9000);
+        return Random.Range(0, 9000);
     }
 
     public int GetBunNumber()
@@ -54,8 +49,7 @@ public class ActorNodeReader : MonoBehaviour
 
     public bool ReadNodeInfo(RoadNode node)
     {
-
-        if(node.type == ActorType)
+        if (node.type == ActorType)
         {
             if (node.ISWorldBound)
             {
@@ -86,7 +80,6 @@ public class ActorNodeReader : MonoBehaviour
     {
         MovementM2.SetLampWatch(ref watch);
     }
-
 
     public void DisableActor()
     {

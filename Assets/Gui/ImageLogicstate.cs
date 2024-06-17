@@ -3,11 +3,10 @@ using UnityEngine.UI;
 
 public class ImageLogicstate : MonoBehaviour
 {
-
-
     private Image img;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         img = GetComponent<Image>();
     }
@@ -33,6 +32,7 @@ public class ImageLogicstate : MonoBehaviour
     {
         img.color = Color.red;
     }
+
     public void SetToGreen()
     {
         img.color = Color.green;

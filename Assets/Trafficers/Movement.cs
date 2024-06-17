@@ -1,7 +1,6 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Movement : MonoBehaviour
 {
@@ -63,8 +62,6 @@ public class Movement : MonoBehaviour
             routeIndex = -1;
             SmartUpdate();
         }
-
-
     }
 
     private void VehicleDetector_OnLongScanDetected(bool obj)
@@ -291,7 +288,7 @@ public class Movement : MonoBehaviour
             transform.LookAt(LocalGoal);
             //this.body.MovePosition(TargetPos);
 
-            this.body.MovePosition( transform.position += transform.forward * Maxspeed *Time.deltaTime);
+            this.body.MovePosition(transform.position += transform.forward * Maxspeed * Time.deltaTime);
             lastPercentageComplete = percentageComplete;
         }
         if (percentageComplete >= 1.0f)

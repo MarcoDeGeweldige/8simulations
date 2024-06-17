@@ -9,14 +9,16 @@ public class CarActorCollection : MonoBehaviour
     // Serialized field for car prefabs
     [SerializeField]
     private List<GameObject> carPrefabs = new List<GameObject>();
+
     [SerializeField]
     private List<GameObject> PedPrefabs = new List<GameObject>();
+
     [SerializeField]
     private List<GameObject> BikePrefabs = new List<GameObject>();
 
-
     // Private field for priority vehicle prefab
     private GameObject PrioVehiclePrefab;
+
     [SerializeField]
     private GameObject CarPrefab;
 
@@ -39,7 +41,7 @@ public class CarActorCollection : MonoBehaviour
 
     private static GameObject staticRealCarPrefab;
     public static List<GameObject> StaticCarPrefabs { get; private set; }
-    public static List<GameObject> StaticPedPrefabs {  get; private set; }
+    public static List<GameObject> StaticPedPrefabs { get; private set; }
     public static List<GameObject> StaticBikePrefabs { get; private set; }
 
     // Lists for storing detectors
@@ -78,6 +80,7 @@ public class CarActorCollection : MonoBehaviour
         int randomIndex = Random.Range(0, StaticCarPrefabs.Count);
         return StaticCarPrefabs[randomIndex];
     }
+
     public static GameObject GetRandomBikePrefab()
     {
         if (StaticBikePrefabs.Count == 0)
@@ -88,6 +91,7 @@ public class CarActorCollection : MonoBehaviour
         int randomIndex = Random.Range(0, StaticBikePrefabs.Count);
         return StaticBikePrefabs[randomIndex];
     }
+
     public static GameObject GetRandomPedPrefab()
     {
         if (StaticPedPrefabs.Count == 0)
@@ -98,6 +102,7 @@ public class CarActorCollection : MonoBehaviour
         int randomIndex = Random.Range(0, StaticPedPrefabs.Count);
         return StaticPedPrefabs[randomIndex];
     }
+
     public static GameObject getCarPrefab()
     {
         return staticRealCarPrefab;
@@ -121,4 +126,3 @@ public class CarActorCollection : MonoBehaviour
 
     //public static void AddDetoFB(SingleDetector singleDetector) => Singlesfb.Add(singleDetector);
 }
-

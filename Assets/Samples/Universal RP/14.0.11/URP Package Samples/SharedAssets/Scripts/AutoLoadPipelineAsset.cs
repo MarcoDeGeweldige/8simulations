@@ -7,15 +7,16 @@ public class AutoLoadPipelineAsset : MonoBehaviour
 {
     [SerializeField]
     private UniversalRenderPipelineAsset m_PipelineAsset;
+
     private RenderPipelineAsset m_PreviousPipelineAsset;
     private bool m_overrodeQualitySettings;
 
-    void OnEnable()
+    private void OnEnable()
     {
         UpdatePipeline();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         ResetPipeline();
     }
@@ -51,7 +52,6 @@ public class AutoLoadPipelineAsset : MonoBehaviour
             {
                 GraphicsSettings.defaultRenderPipeline = m_PreviousPipelineAsset;
             }
-
         }
     }
 }

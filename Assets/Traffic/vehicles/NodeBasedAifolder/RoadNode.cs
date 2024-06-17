@@ -1,36 +1,39 @@
 using System;
 using UnityEngine;
 
-
 //the next step for ai
 //true node based navigation
 public class RoadNode : MonoBehaviour
 {
-
     public bool IsWorldEntryNode = false;
     public NodeType type;
 
     //traffic light handling
     public bool IsSTopPoint = false;
 
-
     public bool IsFarLus = false;
+
     //end of the world will despawn
     public bool ISWorldBound = false;
+
     //allows vehicles to switch to other lanes
     public bool CanSwitchLaneAtNode = false;
+
     //this means that the next node can take busses
     public bool IsBusLaneEntryNode = false;
+
     //when exclusive for busses
     public bool IsBusOnlyNode = false;
 
     //the position of the next node
     public Vector3 NextPoint = Vector3.zero;
+
     //for interaction with needed groeps
     //public NodeType nodeType = NodeType.HighSpeed;
 
-    //assign this to enable routing 
+    //assign this to enable routing
     public RoadNode NextNode;
+
     //when allowing car to switch
     public RoadNode SwitchLaneNode;
 
@@ -42,21 +45,21 @@ public class RoadNode : MonoBehaviour
     public bool IsDetector;
 
     public event Action<bool, bool> OnTriggerChange;
-    public event Action<int> OnBusLeave;
-    public event Action<int> OnBusEnter;
-    public event Action<bool, int> OnTriggerChangeWithBus;
 
+    public event Action<int> OnBusLeave;
+
+    public event Action<int> OnBusEnter;
+
+    public event Action<bool, int> OnTriggerChangeWithBus;
 
     private void Awake()
     {
         this.GetComponent<BoxCollider>().isTrigger = true;
         this.GetComponent<MeshRenderer>().enabled = false;
-        if(SwitchLaneNode != null)
+        if (SwitchLaneNode != null)
         {
             this.CanSwitchLaneAtNode = true;
         }
-        
-        
     }
 
     public void AssingLampostManager(ref LampWatch watch)
@@ -65,17 +68,15 @@ public class RoadNode : MonoBehaviour
         {
             this.LampWatch = watch;
             this.IsSTopPoint = true;
-
         }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Start()
+    {
         if (System.Object.ReferenceEquals(null, LampWatch))
         {
             this.IsSTopPoint = false;
-
         }
         else
         {
@@ -85,7 +86,6 @@ public class RoadNode : MonoBehaviour
         if (NextNode != null)
         {
             NextPoint = NextNode.GetPointPosition();
-
         }
         else
         {
@@ -96,13 +96,11 @@ public class RoadNode : MonoBehaviour
             BusNode = FindBusNode();
         }
 
-
         if (!IsWorldEntryNode)
         {
             if (NextNode != null)
             {
                 NextPoint = NextNode.GetPointPosition();
-
             }
             else
             {
@@ -112,13 +110,11 @@ public class RoadNode : MonoBehaviour
             {
                 BusNode = FindBusNode();
             }
-
         }
         else
         {
             //world spawn here, set lane as an public thing to spawn
             NodeTrafficSpawn.AssignToEntryNode(this, type);
-
         }
     }
 
@@ -134,7 +130,7 @@ public class RoadNode : MonoBehaviour
     //        }
 
     //    }
-    //    return 
+    //    return
     //}
     private void OnTriggerEnter(Collider other)
     {
@@ -145,21 +141,18 @@ public class RoadNode : MonoBehaviour
             {
                 ActorNodeReader actorNode = other.GetComponent<ActorNodeReader>();
 
-
                 if (IsDetector)
                 {
                     if (!actorNode.IsBus)
                     {
                         OnTriggerChange.Invoke(true, actorNode.IsPrioV);
-
-
                     }
                     else
                     {
                         OnTriggerChange.Invoke(true, actorNode.IsPrioV);
 
                         OnBusEnter?.Invoke(actorNode.GetBunNumber());
-                        
+
                         //OnBusEnter.Invoke(actorNode.GetBunNumber());
                     }
                 }
@@ -168,8 +161,6 @@ public class RoadNode : MonoBehaviour
                 //{
                 //    OnTriggerChange.Invoke(true);
                 //}
-
-                
             }
             //if (this.ISWorldBound)
             //{
@@ -185,11 +176,8 @@ public class RoadNode : MonoBehaviour
         {
             return;
         }
-
     }
 
-
-    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Actor"))
@@ -206,21 +194,18 @@ public class RoadNode : MonoBehaviour
                 {
                     OnTriggerChange?.Invoke(false, actorNode.IsPrioV);
                 }
-
-
             }
         }
-
     }
 
     public Vector3 GetPointPosition()
     {
         return this.transform.position;
     }
+
     //get the positiof the next node
     public Vector3 GetNextPosition()
     {
-
         if (CanSwitchLaneAtNode)
         {
             int c = UnityEngine.Random.Range(0, 2);
@@ -231,23 +216,20 @@ public class RoadNode : MonoBehaviour
             }
             else
             {
-
                 return this.SwitchLaneNode.GetPointPosition();
             }
-
         }
         return this.NextPoint;
     }
 
     public void SetUpTriggers()
     {
-
     }
+
     public Vector3 GetNextBusPosition()
     {
         return this.BusNode.GetPointPosition();
     }
-
 
     public ref LampWatch GetLampWatch()
     {
@@ -266,6 +248,4 @@ public class RoadNode : MonoBehaviour
         }
         return NextNode;
     }
-
-    
 }

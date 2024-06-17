@@ -6,19 +6,23 @@ public class FirstPersonController : MonoBehaviour
 {
     [SerializeField]
     private float m_MouseSensitivity = 100f;
+
     [SerializeField]
     private float m_MovementSpeed = 5f;
+
     [SerializeField]
     private Transform m_PlayerCamera = null;
+
     [SerializeField]
     private bool m_MoveWithMouse = true;
 
     private CharacterController m_CharacterController;
     private float m_XRotation = 0f;
+
     [SerializeField]
     private byte m_ButtonMovementFlags;
 
-    void Start()
+    private void Start()
     {
 #if ENABLE_INPUT_SYSTEM
         Debug.Log("The FirstPersonController uses the legacy input system. Please set it in Project Settings");
@@ -31,7 +35,7 @@ public class FirstPersonController : MonoBehaviour
         m_CharacterController = GetComponent<CharacterController>();
     }
 
-    void Update()
+    private void Update()
     {
         Look();
         Move();

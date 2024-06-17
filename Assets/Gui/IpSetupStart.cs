@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class IpSetupStart : MonoBehaviour
 {
-
     public bool ServerStarted = false;
 
     public bool IpChanged = false;
     public GameObject GuiBoxes;
     // Start is called before the first frame update
-
 
     public void CloseMenuAndConnect()
     {

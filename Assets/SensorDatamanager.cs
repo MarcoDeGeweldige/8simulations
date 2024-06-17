@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-
 using UnityEngine;
-
 
 public enum MessageType
 {
@@ -9,15 +7,18 @@ public enum MessageType
     normalmsgBus,
     CarOnlymsg
 }
+
 public static class SensorDatamanager
 {
+    private static ComBlock ComBlockA = new ComBlock(4, 2, MessageType.normalmsg);
+    private static ComBlock ComBlockB = new ComBlock(4, 2, MessageType.normalmsgBus);
+    private static ComBlock ComBlockC = new ComBlock(4, 0, MessageType.CarOnlymsg);
+    private static ComBlock ComBlockD = new ComBlock(4, 0, MessageType.CarOnlymsg);
+    private static ComBlock ComBlockE = new ComBlock(3, 2, MessageType.normalmsgBus);
+    private static ComBlock ComBlockF = new ComBlock(4, 2, MessageType.normalmsg);
 
-    private static ComBlock ComBlockA = new ComBlock(4,2, MessageType.normalmsg);
-    private static ComBlock ComBlockB = new ComBlock(4,2, MessageType.normalmsgBus);
-    private static ComBlock ComBlockC = new ComBlock(4,0, MessageType.CarOnlymsg);
-    private static ComBlock ComBlockD = new ComBlock(4,0, MessageType.CarOnlymsg);
-    private static ComBlock ComBlockE = new ComBlock(3,2, MessageType.normalmsgBus);
-    private static ComBlock ComBlockF = new ComBlock(4,2, MessageType.normalmsg);
+    private static List<LampostManager> standalonelampB = new List<LampostManager>();
+    private static List<LampostManager> standalonelampE = new List<LampostManager>();
 
     public static void AssignTomanager(LaneCommunicator communicator, LaneId laneId)
     {
@@ -56,7 +57,6 @@ public static class SensorDatamanager
     {
         switch (laneId)
         {
-
             case LaneId.B:
                 RegisterLineToLane(ref ComBlockB, num);
                 break;
@@ -69,11 +69,36 @@ public static class SensorDatamanager
                 return;
         }
     }
+
+    public static void AddLightToList(LampostManager lampost, bool isB)
+    {
+        if (isB)
+        {
+            standalonelampB.Add(lampost);
+        }
+        else
+        {
+            standalonelampE.Add(lampost);
+        }
+        //standalonelampB.Add(lampost);
+
+        //standalonelampE.Add(lampost);
+    }
+
+    public static void assignToIsolatedLight(ref recieverpakket.SignalGroup fullpakket)
+    {
+        //standalonelampB = fullpakket.blocksMsg.B.busje;
+
+        standalonelampB[0].SetLight(fullpakket.blocksMsg.B.busje[0]);
+
+        standalonelampE[0].SetLight(fullpakket.blocksMsg2.E.busje[0]);
+        standalonelampE[1].SetLight(fullpakket.blocksMsg2.E.busje[1]);
+    }
+
     public static void RemoveNumberToBuslist(int num, LaneId laneId)
     {
         switch (laneId)
         {
-
             case LaneId.B:
                 RemoveLineToLane(ref ComBlockB, num);
                 break;
@@ -91,23 +116,24 @@ public static class SensorDatamanager
     {
         block.AddBusNumberToList(number);
     }
+
     public static void RemoveLineToLane(ref ComBlock block, int number)
     {
         block.RemoveBusnumberFromList(number);
     }
 
-
     public static void AddToComblock(ref ComBlock block, ref LaneCommunicator laneCommunicator)
     {
         block.AddToList(ref laneCommunicator);
     }
+
     public static string testprint()
     {
         return "i am here and static";
     }
+
     public static blockmsgCarOnly GetCarmsg()
     {
-
         blockmsgCarOnly carOnly = ComBlockA.GetblockmsgCar();
 
         foreach (var item in carOnly.LCarSensormsgs)
@@ -135,12 +161,11 @@ public static class SensorDatamanager
         blocks.B = ComBlockB.GetNormalBlockBUS();
         blocks.C = ComBlockC.GetblockmsgCar();
 
-
         return blocks;
     }
+
     public static blocksMsg2 GetBlocksB()
     {
-
         blocksMsg2 blocks = new blocksMsg2();
 
         blocks.D = ComBlockD.GetblockmsgCar();
@@ -149,31 +174,30 @@ public static class SensorDatamanager
 
         return blocks;
     }
-
-
-
 }
 
 public class ComBlock
 {
     //the max car com to acummilate
-    int maxCarCum;
-    
-    int maxBikeCum;
+    private int maxCarCum;
 
-    int maxPedCum;
+    private int maxBikeCum;
 
-    bool IsCaronly;
+    private int maxPedCum;
+
+    private bool IsCaronly;
     private MessageType messageType;
 
     //Car lanes can parse busses and prio vehicles
-    List<LaneCommunicator> communicatorsCars = new List<LaneCommunicator>();
+    private List<LaneCommunicator> communicatorsCars = new List<LaneCommunicator>();
+
     //optional add only when needed
-    List<LaneCommunicator> communicatorsBikes = new List<LaneCommunicator>();
-    List<LaneCommunicator> communicatorsPeds = new List<LaneCommunicator>();
+    private List<LaneCommunicator> communicatorsBikes = new List<LaneCommunicator>();
+
+    private List<LaneCommunicator> communicatorsPeds = new List<LaneCommunicator>();
     //List<int> bussnumbers = new List<int>();
 
-    List<int> Bussnumbers = new List<int>();
+    private List<int> Bussnumbers = new List<int>();
 
     public ComBlock(int maxCarCum, int maxBikeCum, MessageType messageType)
     {
@@ -182,7 +206,6 @@ public class ComBlock
         this.messageType = messageType;
         CreateContainerList(ref communicatorsCars, maxCarCum);
         CreateBikeAndPedlists();
-
     }
 
     public void AddBusNumberToList(int num)
@@ -194,18 +217,17 @@ public class ComBlock
         Debug.Log("addednumber");
         Bussnumbers.Add(num);
     }
+
     public void RemoveBusnumberFromList(int num)
     {
         if (Bussnumbers.Contains(num))
         {
             Bussnumbers.Remove(num);
         }
-     
     }
 
     public blockmsg GetNormalBlock()
     {
-
         blockmsg normal = new blockmsg();
 
         foreach (var item in communicatorsCars)
@@ -221,13 +243,11 @@ public class ComBlock
             normal.Walkers.Add(item.GetLaneInfoContainer().singledetector);
         }
 
-
-
         return normal;
     }
+
     public blockmsgBus GetNormalBlockBUS()
     {
-
         blockmsgBus normal = new blockmsgBus();
 
         foreach (var item in communicatorsCars)
@@ -244,11 +264,9 @@ public class ComBlock
         }
         //normal.LBusses = communicatorBus[0].bussnumbers;
 
-        
         normal.LBusses = Bussnumbers;
         //normal.LBusses.AddRange(Bussnumbers);
         //normal.LBusses.Add(1000);
-
 
         return normal;
     }
@@ -271,11 +289,10 @@ public class ComBlock
             maxPedCum = maxBikeCum * 2;
             CreateContainerList(ref communicatorsBikes, maxBikeCum);
             CreateContainerList(ref communicatorsPeds, maxPedCum);
-
         }
     }
 
-    void CreateContainerList(ref List<LaneCommunicator> communicators, int maxAmount)
+    private void CreateContainerList(ref List<LaneCommunicator> communicators, int maxAmount)
     {
         communicators = new List<LaneCommunicator>();
         for (int i = 0; i < maxAmount; i++)
@@ -290,43 +307,36 @@ public class ComBlock
         {
             case NodeType.Pedestrian:
                 Debug.Log("adding new pedestrian");
-                if(laneCommunicator.GetComlaneNr() <= communicatorsPeds.Count - 1)
+                if (laneCommunicator.GetComlaneNr() <= communicatorsPeds.Count - 1)
                 {
                     communicatorsPeds[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 }
                 //communicatorsPeds.Add(laneCommunicator);
                 //communicatorsPeds[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 break;
+
             case NodeType.Biker:
                 Debug.Log("adding new bike");
                 //communicatorsBikes.Add(laneCommunicator);
-                if(laneCommunicator.GetComlaneNr() <= communicatorsBikes.Count - 1)
+                if (laneCommunicator.GetComlaneNr() <= communicatorsBikes.Count - 1)
                 {
                     communicatorsBikes[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 }
                 //communicatorsBikes[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 break;
+
             case NodeType.HighSpeed:
                 Debug.Log("lane assing" + communicatorsCars.Count);
 
-                if(laneCommunicator.GetComlaneNr() <= communicatorsCars.Count - 1)
+                if (laneCommunicator.GetComlaneNr() <= communicatorsCars.Count - 1)
                 {
                     communicatorsCars[laneCommunicator.GetComlaneNr()] = laneCommunicator;
                 }
-                //if (laneCommunicator.IsBusonly)
-                //{
-                //   communicatorBus.Add(laneCommunicator);
-                //}
-                //else
-                //{
-                //    communicatorsCars[laneCommunicator.GetComlaneNr()] = laneCommunicator;
-                //}
-                //communicatorsCars.Add(laneCommunicator);
-                //communicatorsCars[laneCommunicator.GetComlaneNr()] = laneCommunicator;
+
                 break;
+
             default:
                 break;
         }
     }
-
 }

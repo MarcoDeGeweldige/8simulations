@@ -12,7 +12,7 @@ public class WalkLanebehaviour : MonoBehaviour
     public bool IsMiddlePoint = false;
     private Road laneRoad;
 
-    LaneCommunicator communicator;
+    private LaneCommunicator communicator;
 
     public RoadNode nearlus;
 
@@ -21,13 +21,11 @@ public class WalkLanebehaviour : MonoBehaviour
     {
         laneRoad = GetComponentInChildren<Road>();
 
-
         communicator = this.GetComponent<LaneCommunicator>();
 
         if (communicator.NearWaitAndDetectLus != null)
         {
             nearlus = communicator.NearWaitAndDetectLus;
-
         }
 
         if (nearlus)
@@ -46,12 +44,8 @@ public class WalkLanebehaviour : MonoBehaviour
             nearlus.LampWatch = this.lampostManager.watch;
             Debug.Log("nearlus is detector");
         }
-
-
     }
 
-
-    
     public Vector3 GetLaneStartSignal()
     {
         return laneRoad.GetStartPosition().position;
@@ -78,10 +72,6 @@ public class WalkLanebehaviour : MonoBehaviour
         {
             Debug.Log("lamplight" + lampostManager.name);
             lampostManager.SetLight(state);
-
         }
     }
-
-    
-
 }

@@ -9,7 +9,7 @@ public class SkyboxCamera : MonoBehaviour
     private Vector3 skyboxCamStartPos;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         if (m_MainCamera == null)
         {
@@ -20,7 +20,7 @@ public class SkyboxCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Vector3 mainCamDeltaPos = m_MainCamera.transform.position - mainCamStartPos;
         transform.position = skyboxCamStartPos + mainCamDeltaPos * m_SkyboxScale;

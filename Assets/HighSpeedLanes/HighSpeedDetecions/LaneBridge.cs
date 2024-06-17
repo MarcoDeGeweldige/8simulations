@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 //de lane bridge zit op de actor

@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class LampostManager : MonoBehaviour
 {
+    public bool IstandAlon = false;
     public bool BuildOnStart = false;
     public bool Isgreen = false;
 
-   
     //the internal behaviour for logic related stuff
     public ColourLogic ColourLogic;
 
     public LampWatch watch;
 
-
     public List<Lighting> lightings = new List<Lighting>();
-
-
 
     private void Start()
     {
-
+        if (IstandAlon)
+        {
+            return;
+        }
         LaneCommunicator communicator = GetComponentInParent<LaneCommunicator>();
         LaneId tempid = communicator.GetLaneId();
         int templanenum = communicator.GetComlaneNr();

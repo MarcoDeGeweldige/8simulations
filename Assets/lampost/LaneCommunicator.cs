@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,13 +12,15 @@ public enum LaneId
 public class LaneCommunicator : MonoBehaviour
 {
     public NodeType type = NodeType.HighSpeed;
+
     //exclusive to busses
     public bool HasBusSupportBusonly;
 
     [SerializeField]
-    LaneId id = LaneId.A;
+    private LaneId id = LaneId.A;
+
     [SerializeField]
-    int detectorNum;
+    private int detectorNum;
 
     //by default
     public RoadNode NearWaitAndDetectLus;
@@ -35,13 +36,11 @@ public class LaneCommunicator : MonoBehaviour
 
     public List<int> bussnumbers;
 
-
-
     private void Awake()
     {
-
         NearWaitAndDetectLus.AssingLampostManager(ref GetComponentInChildren<LampostManager>().watch);
     }
+
     private void Start()
     {
         SetupDetection();
@@ -50,19 +49,18 @@ public class LaneCommunicator : MonoBehaviour
 
     public void RegisterBusNumToLane(int num)
     {
-
         foreach (var item in bussnumbers)
         {
-            if(item == num)
+            if (item == num)
             {
                 return;
             }
         }
         bussnumbers.Add(num);
     }
+
     public void RemoveBussnumberFromList(int num)
     {
-
         bussnumbers.Remove(num);
     }
 
@@ -78,13 +76,11 @@ public class LaneCommunicator : MonoBehaviour
 
     private void SetupDetection()
     {
-
-        if(NearWaitAndDetectLus != null)
+        if (NearWaitAndDetectLus != null)
         {
             NearWaitAndDetectLus.OnTriggerChange += NearWaitAndDetectLus_OnTriggerChange;
-
         }
-        if(FarWaitAndDetectLus != null)
+        if (FarWaitAndDetectLus != null)
         {
             FarWaitAndDetectLus.OnTriggerChange += FarWaitAndDetectLus_OnTriggerChange;
             HasBothLusses = true;
@@ -99,42 +95,31 @@ public class LaneCommunicator : MonoBehaviour
             NearWaitAndDetectLus.OnBusEnter += NearWaitAndDetectLus_OnBusEnter;
             NearWaitAndDetectLus.OnBusLeave += NearWaitAndDetectLus_OnBusLeave;
             FarWaitAndDetectLus.OnBusLeave += FarWaitAndDetectLus_OnBusLeave;
-
         }
-
-       
 
         laneInfoContainer = CreateContainer();
         laneInfoContainer.SetupInfoContainer(HasBothLusses);
-
     }
 
     private void FarWaitAndDetectLus_OnBusLeave(int busnum)
     {
-
         SensorDatamanager.RemoveNumberToBuslist(busnum, GetLaneId());
     }
 
     private void NearWaitAndDetectLus_OnBusLeave(int busnum)
     {
-
         SensorDatamanager.RemoveNumberToBuslist(busnum, GetLaneId());
-
     }
 
     private void NearWaitAndDetectLus_OnBusEnter(int busnum)
     {
         SensorDatamanager.AddNumberToBuslist(busnum, GetLaneId());
-
     }
 
     private void FarWaitAndDetectLus_OnBusEnter(int busnum)
     {
         SensorDatamanager.AddNumberToBuslist(busnum, GetLaneId());
-
     }
-
-
 
     private void FarWaitAndDetectLus_OnTriggerChange(bool obj, bool isPrio)
     {
@@ -150,7 +135,7 @@ public class LaneCommunicator : MonoBehaviour
         //    laneInfoContainer.carSensormsg.DetectFar = obj;
         //}
         laneInfoContainer.UpdateFarLus(obj, isPrio);
-        
+
         //laneInfoContainer.carSensormsg.DetectFar = obj;
     }
 
@@ -165,8 +150,6 @@ public class LaneCommunicator : MonoBehaviour
 
         return laneInfoContainer;
     }
-
-
 
     private void OnDisable()
     {
@@ -185,7 +168,6 @@ public class LaneCommunicator : MonoBehaviour
             NearWaitAndDetectLus.OnBusLeave -= NearWaitAndDetectLus_OnBusLeave;
             FarWaitAndDetectLus.OnBusLeave -= FarWaitAndDetectLus_OnBusLeave;
         }
-        
     }
 
     public LaneInfoContainer GetLaneInfoContainer()
@@ -194,10 +176,10 @@ public class LaneCommunicator : MonoBehaviour
 
 public class LaneInfoContainer
 {
-
     public bool CanRegisterBus;
 
     public List<int> busNumbers;
+
     // Indicates whether this lane uses a single detector (true) or multiple detectors (false)
     public bool IsSingleDetector;
 
@@ -259,7 +241,7 @@ public class LaneInfoContainer
     /// </summary>
     public CarSensormsg GetCarSensormsg()
     {
-        if(carSensormsg == null)
+        if (carSensormsg == null)
         {
             return new CarSensormsg();
         }
@@ -278,12 +260,11 @@ public class LaneInfoContainer
             carSensormsg.PrioCar = isPrio;
         }
     }
+
     public void UpdateFarLus(bool status, bool isPrio)
     {
-
-            carSensormsg.DetectFar = status;
-            carSensormsg.PrioCar = isPrio;
-        
+        carSensormsg.DetectFar = status;
+        carSensormsg.PrioCar = isPrio;
     }
 
     /// <summary>
@@ -294,4 +275,3 @@ public class LaneInfoContainer
         // Placeholder: Implement data clearing logic if needed.
     }
 }
-

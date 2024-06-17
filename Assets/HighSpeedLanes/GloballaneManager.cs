@@ -95,13 +95,12 @@ public class GloballaneManager : MonoBehaviour
         this.OntruimingsTijdLoper = tijd;
     }
 
-    IEnumerator RanomizeLamps()
+    private IEnumerator RanomizeLamps()
     {
         while (true) // Loop indefinitely
         {
             yield return new WaitForSeconds(10);
             DirectLampLink.UpdatRandomlyLights();
-
         }
     }
 
@@ -137,7 +136,6 @@ public class GloballaneManager : MonoBehaviour
             yield return new WaitForSeconds(ticktime);
             //SignalGroup message = SensorDatamanager.GetSignalGroup();
 
-            
             string japsie = JsonConvert.SerializeObject(SensorDatamanager.GetSignalGroup());
 
             Debug.Log(japsie);
@@ -145,7 +143,6 @@ public class GloballaneManager : MonoBehaviour
             {
                 Communicator.jsonjapp = japsie;
             }
-
         }
     }
 
@@ -165,7 +162,6 @@ public class GloballaneManager : MonoBehaviour
             //SpawnRandomCars(SpawnMin, SpawnMax);
             NodeTrafficSpawn.SpawnTrafficAtAllStartPoint();
         }
-
     }
 
     //use this to assign cars to lights
@@ -202,7 +198,6 @@ public class GloballaneManager : MonoBehaviour
         //    CreateBikers(go.GetComponentInChildren<FietsLaanBehaviour>(), c);
         //}
     }
-
 
     public void getBikeLaneInfo()
     {

@@ -25,7 +25,6 @@ public class vehicleDetector : MonoBehaviour
     {
         detectionRange = detectionRange * 0.5f;
         longScanRange = longScanRange * 0.5f;
-
     }
 
     private IEnumerator ScanFrontl(float time)

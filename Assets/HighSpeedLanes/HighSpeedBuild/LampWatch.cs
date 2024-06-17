@@ -6,6 +6,7 @@ public class LampWatch : MonoBehaviour
 {
     [SerializeField]
     private bool canGo = false;
+
     private bool SharesBus = false;
 
     private void Start()
@@ -52,6 +53,4 @@ public class LampWatch : MonoBehaviour
             }
         }
     }
-
-
 }

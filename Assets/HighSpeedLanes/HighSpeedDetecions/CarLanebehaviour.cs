@@ -12,29 +12,29 @@ public class CarLanebehaviour : MonoBehaviour
     public Vector3 OffsettedStartPos;
     public bool IsMiddlePoint = false;
     public GameObject ExitNode;
+
     //public LTrigger NearLus; // Signal detector at the signal (near)
     //public LTrigger FarLus; // Signal detector far from the signal
     public CarSensormsg DetectorLus = new CarSensormsg();
+
     public float FarLaneDistance; // Offset far from the signal light
     public float LaneStartdistance; // Extra offset added on top of the far lane (true beginning of the road)
     private Road LaneRoad; // Local road definition
     public LampostManager LampostManager;
 
-    LaneCommunicator communicator;
+    private LaneCommunicator communicator;
 
     public RoadNode nearlus;
     public RoadNode farlus;
-
 
     // Start method initializes detectors and other settings
     private void Start()
     {
         communicator = this.GetComponentInParent<LaneCommunicator>();
 
-        if(communicator.FarWaitAndDetectLus != null)
+        if (communicator.FarWaitAndDetectLus != null)
         {
             farlus = communicator.FarWaitAndDetectLus;
-
         }
         if (communicator.NearWaitAndDetectLus != null)
         {
@@ -50,7 +50,7 @@ public class CarLanebehaviour : MonoBehaviour
             Debug.Log("nolus");
         }
 
-        if(nearlus != null)
+        if (nearlus != null)
         {
             nearlus.OnTriggerChange += updateNearlus;
             nearlus.IsDetector = true;
@@ -58,13 +58,12 @@ public class CarLanebehaviour : MonoBehaviour
             nearlus.IsSTopPoint = true;
             Debug.Log("nearlus is detector");
         }
-        if(farlus != null)
+        if (farlus != null)
         {
             farlus.OnTriggerChange += updateFarLus;
             farlus.IsDetector = true;
             Debug.Log("nearlus is detector");
         }
-
 
         // Adjust position of the far detector
         //FarLus.gameObject.transform.position += FarLus.transform.forward * FarLaneDistance;
@@ -80,10 +79,8 @@ public class CarLanebehaviour : MonoBehaviour
         //}
     }
 
-
     public void updateNearlus(bool state, bool isPrio)
     {
-
         this.DetectorLus.DetectNear = state;
     }
 
@@ -91,6 +88,7 @@ public class CarLanebehaviour : MonoBehaviour
     {
         this.DetectorLus.DetectFar = state;
     }
+
     // Set this lane as a middle point
     public void SetAsmiddlePoint()
     {
@@ -156,10 +154,7 @@ public class CarLanebehaviour : MonoBehaviour
     public void SetLampLight(int state)
     {
         LampostManager.SetLight(state);
-
-
     }
-
 
     // Get trigger information
     public CarSensormsg getTriggerInfo()
@@ -169,7 +164,7 @@ public class CarLanebehaviour : MonoBehaviour
 
     private void OnDisable()
     {
-        if(nearlus != null)
+        if (nearlus != null)
         {
             nearlus.OnTriggerChange -= updateNearlus;
         }
@@ -179,4 +174,3 @@ public class CarLanebehaviour : MonoBehaviour
         }
     }
 }
-
