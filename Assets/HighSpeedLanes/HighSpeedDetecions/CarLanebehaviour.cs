@@ -13,13 +13,10 @@ public class CarLanebehaviour : MonoBehaviour
     public bool IsMiddlePoint = false;
     public GameObject ExitNode;
 
-    //public LTrigger NearLus; // Signal detector at the signal (near)
-    //public LTrigger FarLus; // Signal detector far from the signal
     public CarSensormsg DetectorLus = new CarSensormsg();
 
     public float FarLaneDistance; // Offset far from the signal light
     public float LaneStartdistance; // Extra offset added on top of the far lane (true beginning of the road)
-    private Road LaneRoad; // Local road definition
     public LampostManager LampostManager;
 
     private LaneCommunicator communicator;
@@ -32,51 +29,27 @@ public class CarLanebehaviour : MonoBehaviour
     {
         communicator = this.GetComponentInParent<LaneCommunicator>();
 
-        if (communicator.FarWaitAndDetectLus != null)
+        if(communicator.FarWaitAndDetectLus != null)
         {
             farlus = communicator.FarWaitAndDetectLus;
         }
-        if (communicator.NearWaitAndDetectLus != null)
+        if(communicator.NearWaitAndDetectLus != null)
         {
             nearlus = communicator.NearWaitAndDetectLus;
         }
-        LaneRoad = GetComponentInChildren<Road>();
-        if (nearlus)
-        {
-            Debug.Log("i got an lus");
-        }
-        else
-        {
-            Debug.Log("nolus");
-        }
 
-        if (nearlus != null)
+        if(nearlus != null)
         {
             nearlus.OnTriggerChange += updateNearlus;
             nearlus.IsDetector = true;
             nearlus.LampWatch = LampostManager.watch;
             nearlus.IsSTopPoint = true;
-            Debug.Log("nearlus is detector");
         }
-        if (farlus != null)
+        if(farlus != null)
         {
             farlus.OnTriggerChange += updateFarLus;
             farlus.IsDetector = true;
-            Debug.Log("nearlus is detector");
         }
-
-        // Adjust position of the far detector
-        //FarLus.gameObject.transform.position += FarLus.transform.forward * FarLaneDistance;
-
-        // Set up near and far detectors
-        //NearLus.setup(this, true);
-        //FarLus.setup(this, false);
-
-        // Calculate offsetted start position
-        //if (HasOffsetNearlusFromStart)
-        //{
-        //    OffsettedStartPos = NearLus.transform.position + NearLus.transform.forward * EntranceOffset;
-        //}
     }
 
     public void updateNearlus(bool state, bool isPrio)
@@ -89,86 +62,19 @@ public class CarLanebehaviour : MonoBehaviour
         this.DetectorLus.DetectFar = state;
     }
 
-    // Set this lane as a middle point
-    public void SetAsmiddlePoint()
-    {
-        this.IsMiddlePoint = true;
-    }
-
-    // Handle detection events
-    public void OnDetect(bool isnear)
-    {
-        if (isnear)
-        {
-            DetectorLus.DetectNear = true;
-        }
-        else
-        {
-            DetectorLus.DetectFar = true;
-        }
-    }
-
-    // Handle detection events with priority vehicle flag
-    public void OnDetect(bool isnear, bool IsprioVehicle)
-    {
-        if (isnear)
-        {
-            DetectorLus.DetectNear = true;
-            DetectorLus.PrioCar = true;
-        }
-        else
-        {
-            DetectorLus.DetectFar = true;
-            DetectorLus.PrioCar = true;
-        }
-    }
-
-    // Handle exit detection events
-    public void ExitDetected(bool isnear)
-    {
-        if (isnear)
-        {
-            DetectorLus.DetectNear = false;
-        }
-        else
-        {
-            DetectorLus.DetectFar = false;
-        }
-    }
-
-    // Handle exit detection events with priority vehicle flag
-    public void ExitDetected(bool isnear, bool IsprioVehicle)
-    {
-        if (isnear)
-        {
-            DetectorLus.DetectNear = false;
-            DetectorLus.PrioCar = false;
-        }
-        else
-        {
-            DetectorLus.DetectFar = false;
-        }
-    }
-
     // Set lamp light state
     public void SetLampLight(int state)
     {
         LampostManager.SetLight(state);
     }
 
-    // Get trigger information
-    public CarSensormsg getTriggerInfo()
-    {
-        return this.DetectorLus;
-    }
-
     private void OnDisable()
     {
-        if (nearlus != null)
+        if(nearlus != null)
         {
             nearlus.OnTriggerChange -= updateNearlus;
         }
-        if (farlus != null)
+        if(farlus != null)
         {
             farlus.OnTriggerChange -= updateFarLus;
         }

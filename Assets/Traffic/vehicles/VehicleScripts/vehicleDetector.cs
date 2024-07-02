@@ -23,13 +23,13 @@ public class vehicleDetector : MonoBehaviour
 
     public void halveScanRange()
     {
-        detectionRange = detectionRange * 0.5f;
-        longScanRange = longScanRange * 0.5f;
+        detectionRange *= 0.5f;
+        longScanRange *= 0.5f;
     }
 
     private IEnumerator ScanFrontl(float time)
     {
-        while (true) // Loop indefinitely
+        while(true) // Loop indefinitely
         {
             LongScanFront();
             DetectVehiclesInFront();
@@ -40,7 +40,7 @@ public class vehicleDetector : MonoBehaviour
     private void LongScanFront()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, longScanRange, vehicleLayer))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, longScanRange, vehicleLayer))
         {
             OnLongScanDetected?.Invoke(true);
         }
@@ -53,7 +53,7 @@ public class vehicleDetector : MonoBehaviour
     private void DetectVehiclesInFront()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, detectionRange, vehicleLayer))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, detectionRange, vehicleLayer))
         {
             Debug.DrawLine(transform.position, hit.point);
             // Detected a vehicle in front

@@ -21,10 +21,6 @@ public class StateDisplay : MonoBehaviour
 
     public UnityEvent<bool> onBoolUpdated;
 
-    private void Start()
-    {
-        //StartCoroutine(toggleauto());
-    }
 
     private IEnumerator toggleauto()
     {

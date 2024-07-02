@@ -13,7 +13,7 @@ public class ImageLogicstate : MonoBehaviour
 
     public void BooleanDisplay(bool val)
     {
-        if (val)
+        if(val)
         {
             img.color = Color.green;
         }

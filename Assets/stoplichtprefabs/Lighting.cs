@@ -12,7 +12,10 @@ public class Lighting : MonoBehaviour
     //huidige staat
     public bool Status
     {
-        get { return status; }
+        get
+        {
+            return status;
+        }
         set
         {
             status = value;
@@ -60,7 +63,7 @@ public class Lighting : MonoBehaviour
     private void SetState(bool val)
     {
         //Debug.Log(val);
-        if (val)
+        if(val)
         {
             spotLightLink.intensity = lightIntensity;
         }

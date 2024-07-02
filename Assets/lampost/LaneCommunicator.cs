@@ -32,7 +32,6 @@ public class LaneCommunicator : MonoBehaviour
 
     private LaneInfoContainer laneInfoContainer = new LaneInfoContainer();
 
-    private bool TriggerArePlaced = false;
 
     public List<int> bussnumbers;
 
@@ -49,9 +48,9 @@ public class LaneCommunicator : MonoBehaviour
 
     public void RegisterBusNumToLane(int num)
     {
-        foreach (var item in bussnumbers)
+        foreach(int item in bussnumbers)
         {
-            if (item == num)
+            if(item == num)
             {
                 return;
             }
@@ -59,10 +58,6 @@ public class LaneCommunicator : MonoBehaviour
         bussnumbers.Add(num);
     }
 
-    public void RemoveBussnumberFromList(int num)
-    {
-        bussnumbers.Remove(num);
-    }
 
     public int GetComlaneNr()
     {
@@ -76,11 +71,11 @@ public class LaneCommunicator : MonoBehaviour
 
     private void SetupDetection()
     {
-        if (NearWaitAndDetectLus != null)
+        if(NearWaitAndDetectLus != null)
         {
             NearWaitAndDetectLus.OnTriggerChange += NearWaitAndDetectLus_OnTriggerChange;
         }
-        if (FarWaitAndDetectLus != null)
+        if(FarWaitAndDetectLus != null)
         {
             FarWaitAndDetectLus.OnTriggerChange += FarWaitAndDetectLus_OnTriggerChange;
             HasBothLusses = true;
@@ -89,7 +84,7 @@ public class LaneCommunicator : MonoBehaviour
         {
             HasBothLusses = false;
         }
-        if (HasBusSupportBusonly)
+        if(HasBusSupportBusonly)
         {
             FarWaitAndDetectLus.OnBusEnter += FarWaitAndDetectLus_OnBusEnter;
             NearWaitAndDetectLus.OnBusEnter += NearWaitAndDetectLus_OnBusEnter;
@@ -123,20 +118,7 @@ public class LaneCommunicator : MonoBehaviour
 
     private void FarWaitAndDetectLus_OnTriggerChange(bool obj, bool isPrio)
     {
-        //if(laneInfoContainer.carSensormsg != null)
-        //{
-        //    laneInfoContainer.carSensormsg.DetectFar = obj;
-        //    return;
-
-        //}
-        //else
-        //{
-        //    laneInfoContainer.carSensormsg = new CarSensormsg();
-        //    laneInfoContainer.carSensormsg.DetectFar = obj;
-        //}
         laneInfoContainer.UpdateFarLus(obj, isPrio);
-
-        //laneInfoContainer.carSensormsg.DetectFar = obj;
     }
 
     private void NearWaitAndDetectLus_OnTriggerChange(bool obj, bool isPrio)
@@ -153,15 +135,15 @@ public class LaneCommunicator : MonoBehaviour
 
     private void OnDisable()
     {
-        if (NearWaitAndDetectLus != null)
+        if(NearWaitAndDetectLus != null)
         {
             NearWaitAndDetectLus.OnTriggerChange -= NearWaitAndDetectLus_OnTriggerChange;
         }
-        if (FarWaitAndDetectLus != null)
+        if(FarWaitAndDetectLus != null)
         {
             FarWaitAndDetectLus.OnTriggerChange -= FarWaitAndDetectLus_OnTriggerChange;
         }
-        if (HasBusSupportBusonly)
+        if(HasBusSupportBusonly)
         {
             FarWaitAndDetectLus.OnBusEnter -= FarWaitAndDetectLus_OnBusEnter;
             NearWaitAndDetectLus.OnBusEnter -= NearWaitAndDetectLus_OnBusEnter;
@@ -171,7 +153,9 @@ public class LaneCommunicator : MonoBehaviour
     }
 
     public LaneInfoContainer GetLaneInfoContainer()
-    { return laneInfoContainer; }
+    {
+        return laneInfoContainer;
+    }
 }
 
 public class LaneInfoContainer
@@ -205,7 +189,7 @@ public class LaneInfoContainer
     public LaneInfoContainer SetupInfoContainer(bool isSingleDetector)
     {
         //IsSingleDetector = isSingleDetector;
-        if (isSingleDetector)
+        if(isSingleDetector)
         {
             carSensormsg = new CarSensormsg();
             IsSingleDetector = false;
@@ -234,14 +218,14 @@ public class LaneInfoContainer
     /// <summary>
     /// Gets the single detector instance.
     /// </summary>
-    public SingleDetector GetSingleDetector => singledetector;
+    //public SingleDetector GetSingleDetector => singledetector;
 
     /// <summary>
     /// Creates and returns a car sensor message based on current statuses.
     /// </summary>
     public CarSensormsg GetCarSensormsg()
     {
-        if (carSensormsg == null)
+        if(carSensormsg == null)
         {
             return new CarSensormsg();
         }
@@ -250,7 +234,7 @@ public class LaneInfoContainer
 
     public void UpdateNearLus(bool status, bool isPrio)
     {
-        if (IsSingleDetector)
+        if(IsSingleDetector)
         {
             singledetector.Detected = status;
         }

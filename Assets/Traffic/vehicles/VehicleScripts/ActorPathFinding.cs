@@ -28,7 +28,7 @@ public class ActorPathFinding : MonoBehaviour
 
     public void SetResetAndSetRoute(List<Vector3> route)
     {
-        SetLongRoute(route);
+        //SetLongRoute(route);
         OnNewRoute?.Invoke();
     }
 
@@ -45,7 +45,7 @@ public class ActorPathFinding : MonoBehaviour
 
     public bool HasOffsetedPath()
     {
-        if (routelist.Count == 4)
+        if(routelist.Count == 4)
         {
             return true;
         }
@@ -59,7 +59,7 @@ public class ActorPathFinding : MonoBehaviour
 
     public bool IsFinished(int index)
     {
-        if (routelist.Count <= index)
+        if(routelist.Count <= index)
         {
             return false;
         }

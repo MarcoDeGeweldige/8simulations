@@ -20,7 +20,7 @@ public class ActorNodeReader : MonoBehaviour
     {
         MovementM2 = this.GetComponent<MovementM2>();
         IsPrioV = MovementM2.IsPrio;
-        if (IsBus)
+        if(IsBus)
         {
             bunLineNumber = GetNewBusNumber();
         }
@@ -49,9 +49,9 @@ public class ActorNodeReader : MonoBehaviour
 
     public bool ReadNodeInfo(RoadNode node)
     {
-        if (node.type == ActorType)
+        if(node.type == ActorType)
         {
-            if (node.ISWorldBound)
+            if(node.ISWorldBound)
             {
                 DisableActor();
             }
@@ -60,13 +60,13 @@ public class ActorNodeReader : MonoBehaviour
         {
             return false;
         }
-        if (node.IsSTopPoint)
+        if(node.IsSTopPoint)
         {
             SetLampWatch(ref node.GetLampWatch());
         }
-        if (IsBus)
+        if(IsBus)
         {
-            if (node.IsBusLaneEntryNode)
+            if(node.IsBusLaneEntryNode)
             {
                 MovementM2.SetNewGoal(node.GetNextBusPosition());
             }

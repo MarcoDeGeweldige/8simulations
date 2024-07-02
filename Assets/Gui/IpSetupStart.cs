@@ -10,7 +10,7 @@ public class IpSetupStart : MonoBehaviour
 
     public void CloseMenuAndConnect()
     {
-        if (IpChanged)
+        if(IpChanged)
         {
             ServerStarted = true;
             GuiBoxes.SetActive(false);

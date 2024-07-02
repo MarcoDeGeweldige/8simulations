@@ -1,34 +1,42 @@
+
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BlockViewer : MonoBehaviour
 {
-    private Vector3 OriginalCamOffset;
+    // Rotation speed and maximum threshold
     public float rotationSpeed;
     public float maxThresl;
+
+    // The target GameObject
     public GameObject Target;
 
+    // Toggle input flag
     public bool ToggledInput = false;
 
+    // Current focus index
     private int currentfocus = 1;
 
+    // Blocks A to F
     public GameObject BlockA;
     public GameObject BlockB;
     public GameObject BlockC;
     public GameObject BlockD;
     public GameObject BlockE;
     public GameObject BlockF;
-    //5
 
+    // Camera offset
     public Vector3 Camoffset;
 
+    // Main camera
     public Camera Cam;
 
+    // Unity event for block switching
     public UnityEvent<string> OnBlockSwitch;
 
     private void Start()
     {
-        OriginalCamOffset = Camoffset;
+        // Initialize camera position and focus
         Cam = Camera.main;
         Cam.transform.position = BlockA.transform.position;
         currentfocus = 1;
@@ -37,7 +45,8 @@ public class BlockViewer : MonoBehaviour
 
     private GameObject getCurrentFocus()
     {
-        switch (currentfocus)
+        // Determine the current focused block based on index
+        switch(currentfocus)
         {
             case 1:
                 OnBlockSwitch.Invoke("A");
@@ -72,13 +81,16 @@ public class BlockViewer : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Switch focus on Space key press
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             currentfocus++;
             Target = getCurrentFocus();
         }
+
         Transform target = Target.transform;
 
+        // Update camera position and rotation
         this.transform.position = target.position - target.forward * Camoffset.z + target.up * Camoffset.y;
         transform.LookAt(target);
     }

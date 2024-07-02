@@ -18,7 +18,7 @@ public class RunWarning : MonoBehaviour
         set
         {
             startClient = value;
-            if (value == true)
+            if(value == true)
             {
                 ClientManager.SetActive(true);
                 this.gameObject.SetActive(false);
@@ -39,9 +39,9 @@ public class RunWarning : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!StartClient)
+        if(!StartClient)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if(Input.GetKeyDown(KeyCode.F))
             {
                 this.StartClient = true;
             }

@@ -16,14 +16,13 @@ public class ColourLogic : MonoBehaviour
     //index starts at zero
     public void setup(int options)
     {
-        //Debug.Log("setup collogic" + options);
+
         Options = options;
         LampLights = new List<Lighting>();
         //default
         CurrentState = 0;
         watch = GetComponentInParent<LampWatch>();
-        //StatusUpdate(CurrentState);
-        //StartLamp();
+
     }
 
     //insert in order of priority
@@ -41,7 +40,7 @@ public class ColourLogic : MonoBehaviour
     //tpggle it over
     private void StatusUpdate(int Status)
     {
-        switch (Status)
+        switch(Status)
         {
             case 0:
                 //setLampToGreen();
@@ -94,31 +93,4 @@ public class ColourLogic : MonoBehaviour
         LampLights[2].Status = true;
     }
 
-    //public void StartLamp()
-    //{
-    //    foreach(var light in LampLights)
-    //    {
-    //        if (light.idx == CurrentState)
-    //        {
-    //        }
-    //        else
-    //        {
-    //            light.TurnOffLamp();
-
-    //        }
-
-    //    }
-    //    for (int i = 0; i < Options; i++)
-    //    {
-    //        if (LampLights[i].idx == CurrentState)
-    //        {
-    //            LampLights[i].ToggleLight(true);
-    //        }
-    //        else
-    //        {
-    //            LampLights[i].ToggleLight(false);
-    //        }
-
-    //    }
-    //}
 }

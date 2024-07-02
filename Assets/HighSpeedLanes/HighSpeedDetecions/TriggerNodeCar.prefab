@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2242730065612795962}
-  - component: {fileID: -3195178941116748249}
   - component: {fileID: 7489632165082164110}
   m_Layer: 0
   m_Name: TriggerNodeCar
@@ -33,20 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3195178941116748249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8968308738558718696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a6f541a75122e43a491de2ba4aa603, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DetectorSize: {x: 0, y: 0, z: 0}
-  IsNear: 0
 --- !u!65 &7489632165082164110
 BoxCollider:
   m_ObjectHideFlags: 0

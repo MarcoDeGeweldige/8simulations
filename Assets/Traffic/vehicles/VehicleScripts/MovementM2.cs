@@ -75,13 +75,13 @@ public class MovementM2 : MonoBehaviour
 
     private void Start()
     {
-        if (body == null)
+        if(body == null)
         {
             body = GetComponent<Rigidbody>();
         }
         this.GetComponent<BoxCollider>().size = this.ColliderSize;
         _SetVehicleDetectors();
-        if (actorNodeType != NodeType.HighSpeed)
+        if(actorNodeType != NodeType.HighSpeed)
         {
             vehicleDetector.halveScanRange();
         }
@@ -100,14 +100,14 @@ public class MovementM2 : MonoBehaviour
 
     public void SetLampWatch(ref LampWatch watch)
     {
-        if (System.Object.ReferenceEquals(null, watch))
+        if(System.Object.ReferenceEquals(null, watch))
         {
             Debug.Log("null");
             CanGo = true;
             this.PassedWaitNode = true;
             return;
         }
-        if (watch.CanGo)
+        if(watch.CanGo)
         {
             this.IsWaiting = false;
             this.CanGo = true;
@@ -126,7 +126,7 @@ public class MovementM2 : MonoBehaviour
 
     public void RemoveLampWatch()
     {
-        if (!System.Object.ReferenceEquals(watch, null))
+        if(!System.Object.ReferenceEquals(watch, null))
         {
             watch.OnCanGoChanged -= Watch_OnCanGoChanged;
             watch = null;
@@ -136,16 +136,16 @@ public class MovementM2 : MonoBehaviour
 
     private void MoveActor()
     {
-        if (Detectedvehicle)
+        if(Detectedvehicle)
         {
             return;
         }
-        if (this.IsWaiting)
+        if(this.IsWaiting)
         {
             return;
         }
 
-        if (!CanGo)
+        if(!CanGo)
         {
             this.IsWaiting = true;
             return;
@@ -171,9 +171,9 @@ public class MovementM2 : MonoBehaviour
 
     private void VehicleDetector_OnLongScanDetected(bool obj)
     {
-        if (obj)
+        if(obj)
         {
-            if (Detectedvehicle)
+            if(Detectedvehicle)
             {
                 currentSpeed = 0;
                 return;
@@ -183,7 +183,7 @@ public class MovementM2 : MonoBehaviour
         }
         else
         {
-            if (Detectedvehicle)
+            if(Detectedvehicle)
             {
                 currentSpeed = 0;
                 return;
@@ -195,7 +195,7 @@ public class MovementM2 : MonoBehaviour
 
     private void VehicleDetector_OnVehcleDetected(bool detected)
     {
-        if (detected)
+        if(detected)
         {
             Detectedvehicle = detected;
             currentSpeed = 0;
@@ -219,13 +219,13 @@ public class MovementM2 : MonoBehaviour
 
     private void Watch_OnCanGoChanged(bool cango, bool hasBus)
     {
-        if (IsWaiting)
+        if(IsWaiting)
         {
-            if (hasBus)
+            if(hasBus)
             {
-                if (IsBus)
+                if(IsBus)
                 {
-                    if (cango == true)
+                    if(cango == true)
                     {
                         BusLeftLane();
                         IsWaiting = false;
@@ -239,7 +239,7 @@ public class MovementM2 : MonoBehaviour
             else
             {
                 this.CanGo = cango;
-                if (cango == true)
+                if(cango == true)
                 {
                     this.IsWaiting = false;
                     this.CanGo = true;

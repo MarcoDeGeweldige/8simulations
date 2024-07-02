@@ -1,55 +1,47 @@
+
+
 using UnityEngine;
 
 public class ActorInfo : MonoBehaviour
 {
-    //if 1 dan prio
+    // Type represents the type of actor:
+    // 0: Default (not specified)
+    // 1: Priority vehicle
+    // 2: Car
+    // 3: Walker
+    // 4: Biker
+    // 5: Bus
     public int Type = 0;
 
-    public int _BusNum;
+    public int _BusNum; // Bus number (not used in the provided methods)
 
-    //is this a prio vehicle
-    public bool Isprio()
+    // Check if this actor is a priority vehicle
+    public bool IsPrio()
     {
-        if (Type == 1)
-        {
-            return true;
-        }
-        return false;
+        return Type == 1;
     }
 
+    // Check if this actor is a car
     public bool IsCar()
     {
-        if (Type == 2)
-        {
-            return true;
-        }
-        return false;
+        return Type == 2;
     }
 
+    // Check if this actor is a walker
     public bool IsWalker()
     {
-        if (Type == 3)
-        {
-            return true;
-        }
-        return false;
+        return Type == 3;
     }
 
+    // Check if this actor is a biker
     public bool IsBiker()
     {
-        if (Type == 4)
-        {
-            return true;
-        }
-        return false;
+        return Type == 4;
     }
 
+    // Check if this actor is a bus
     public bool IsBus()
     {
-        if (Type == 5)
-        {
-            return true;
-        }
-        return false;
+        return Type == 5;
     }
 }

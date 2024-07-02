@@ -23,15 +23,15 @@ public class AutoLoadPipelineAsset : MonoBehaviour
 
     private void UpdatePipeline()
     {
-        if (m_PipelineAsset)
+        if(m_PipelineAsset)
         {
-            if (QualitySettings.renderPipeline != null && QualitySettings.renderPipeline != m_PipelineAsset)
+            if(QualitySettings.renderPipeline != null && QualitySettings.renderPipeline != m_PipelineAsset)
             {
                 m_PreviousPipelineAsset = QualitySettings.renderPipeline;
                 QualitySettings.renderPipeline = m_PipelineAsset;
                 m_overrodeQualitySettings = true;
             }
-            else if (GraphicsSettings.defaultRenderPipeline != m_PipelineAsset)
+            else if(GraphicsSettings.defaultRenderPipeline != m_PipelineAsset)
             {
                 m_PreviousPipelineAsset = GraphicsSettings.defaultRenderPipeline;
                 GraphicsSettings.defaultRenderPipeline = m_PipelineAsset;
@@ -42,9 +42,9 @@ public class AutoLoadPipelineAsset : MonoBehaviour
 
     private void ResetPipeline()
     {
-        if (m_PreviousPipelineAsset)
+        if(m_PreviousPipelineAsset)
         {
-            if (m_overrodeQualitySettings)
+            if(m_overrodeQualitySettings)
             {
                 QualitySettings.renderPipeline = m_PreviousPipelineAsset;
             }

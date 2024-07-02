@@ -11,7 +11,7 @@ public class SkyboxCamera : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        if (m_MainCamera == null)
+        if(m_MainCamera == null)
         {
             m_MainCamera = Camera.main;
         }

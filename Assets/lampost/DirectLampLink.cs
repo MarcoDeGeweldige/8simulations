@@ -11,7 +11,7 @@ public static class DirectLampLink
 
     public static void AssignTomanager(LampostManager communicator, LaneId laneId, NodeType nodeType, int nodnum)
     {
-        switch (laneId)
+        switch(laneId)
         {
             case LaneId.A:
                 AddToComblock(ref ComBlockA, ref communicator, nodeType, nodnum);
@@ -104,7 +104,7 @@ public class ComBlockLamp
 
     private void setRangedStates(ref List<LampostManager> lamposts)
     {
-        foreach (LampostManager lampost in lamposts)
+        foreach(LampostManager lampost in lamposts)
         {
             lampost.SetLight(UnityEngine.Random.Range(-1, 3));
         }
@@ -112,7 +112,7 @@ public class ComBlockLamp
 
     public void UpdateAllLamps(recieverpakket.LightCarLanemsg lightLanemsg)
     {
-        for (int i = 0; i < lightLanemsg.Cars.Count; i++)
+        for(int i = 0; i < lightLanemsg.Cars.Count; i++)
         {
             communicatorsCars[i].SetLight(lightLanemsg.Cars[i]);
         }
@@ -120,15 +120,15 @@ public class ComBlockLamp
 
     public void UpdateAllLamps(recieverpakket.LightNormalLanemsg lightLanemsg)
     {
-        for (int i = 0; i < lightLanemsg.Cars.Count; i++)
+        for(int i = 0; i < lightLanemsg.Cars.Count; i++)
         {
             communicatorsCars[i].SetLight(lightLanemsg.Cars[i]);
         }
-        for (int i = 0; i < lightLanemsg.bikers.Count; i++)
+        for(int i = 0; i < lightLanemsg.bikers.Count; i++)
         {
             communicatorsBikes[i].SetLight(lightLanemsg.bikers[i]);
         }
-        for (int i = 0; i < lightLanemsg.Walkers.Count; i++)
+        for(int i = 0; i < lightLanemsg.Walkers.Count; i++)
         {
             communicatorsPeds[i].SetLight(lightLanemsg.Walkers[i]);
         }
@@ -136,19 +136,19 @@ public class ComBlockLamp
 
     public void UpdateAllLamps(recieverpakket.LightFullLanemsg lightLanemsg)
     {
-        for (int i = 0; i < lightLanemsg.Cars.Count; i++)
+        for(int i = 0; i < lightLanemsg.Cars.Count; i++)
         {
             communicatorsCars[i].SetLight(lightLanemsg.Cars[i]);
         }
-        for (int i = 0; i < lightLanemsg.bikers.Count; i++)
+        for(int i = 0; i < lightLanemsg.bikers.Count; i++)
         {
             communicatorsBikes[i].SetLight(lightLanemsg.bikers[i]);
         }
-        for (int i = 0; i < lightLanemsg.Walkers.Count; i++)
+        for(int i = 0; i < lightLanemsg.Walkers.Count; i++)
         {
             communicatorsPeds[i].SetLight(lightLanemsg.Walkers[i]);
         }
-        for (int i = 0; i < lightLanemsg.busje.Count; i++)
+        for(int i = 0; i < lightLanemsg.busje.Count; i++)
         {
             Bussnumbers[i].SetLight(lightLanemsg.busje[i]);
         }
@@ -156,7 +156,7 @@ public class ComBlockLamp
 
     private void CreateBikeAndPedlists()
     {
-        if (maxBikeCum > 0)
+        if(maxBikeCum > 0)
         {
             maxPedCum = maxBikeCum * 2;
             CreateContainerList(ref communicatorsBikes, maxBikeCum);
@@ -167,7 +167,7 @@ public class ComBlockLamp
     private void CreateContainerList(ref List<LampostManager> communicators, int maxAmount)
     {
         communicators = new List<LampostManager>();
-        for (int i = 0; i < maxAmount; i++)
+        for(int i = 0; i < maxAmount; i++)
         {
             communicators.Add(null);
         }
@@ -175,7 +175,7 @@ public class ComBlockLamp
 
     public void AddToList(ref LampostManager laneCommunicator, NodeType type, int number)
     {
-        switch (type)
+        switch(type)
         {
             case NodeType.Pedestrian:
 

@@ -8,7 +8,7 @@ public class DepthTextureEnable : MonoBehaviour
 
     private void OnEnable()
     {
-        if (mainCam == null)
+        if(mainCam == null)
         {
             try
             {
@@ -20,7 +20,7 @@ public class DepthTextureEnable : MonoBehaviour
             }
         }
 
-        if (mainCam.depthTextureMode == DepthTextureMode.None)
+        if(mainCam.depthTextureMode == DepthTextureMode.None)
         {
             mainCam.depthTextureMode = DepthTextureMode.Depth;
         }

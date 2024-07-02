@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LampostManager : MonoBehaviour
@@ -17,7 +16,7 @@ public class LampostManager : MonoBehaviour
 
     private void Start()
     {
-        if (IstandAlon)
+        if(IstandAlon)
         {
             return;
         }
@@ -26,7 +25,7 @@ public class LampostManager : MonoBehaviour
         int templanenum = communicator.GetComlaneNr();
         NodeType type = communicator.type;
         DirectLampLink.AssignTomanager(this, tempid, type, templanenum);
-        if (BuildOnStart)
+        if(BuildOnStart)
         {
             SetUpLights();
         }
@@ -36,7 +35,7 @@ public class LampostManager : MonoBehaviour
     {
         lightings.AddRange(this.GetComponentsInChildren<Lighting>());
 
-        foreach (var lighting in lightings)
+        foreach(Lighting lighting in lightings)
         {
             lighting.setup();
         }
@@ -44,20 +43,21 @@ public class LampostManager : MonoBehaviour
 
         AddLightsToLogic(lightings);
         ColourLogic.setLampToRed();
-        //ColourLogic.setLampToGreen();
+        ColourLogic.setLampToGreen();
     }
 
     //called on setup
     public void ConfigureLogic()
     {
-        ColourLogic = this.AddComponent<ColourLogic>();
+    
+        ColourLogic = this.gameObject.AddComponent<ColourLogic>();
 
         ColourLogic.setup(lightings.Count - 1);
     }
 
     public void AddLightsToLogic(List<Lighting> lightings)
     {
-        foreach (var lighting in lightings)
+        foreach(Lighting lighting in lightings)
         {
             ColourLogic.AddItemToLogicM(lighting);
         }
@@ -88,15 +88,4 @@ public class LampostManager : MonoBehaviour
         return ColourLogic.CurrentState;
     }
 
-    public bool IsGreenLight()
-    {
-        if (ColourLogic.CurrentState == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }

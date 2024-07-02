@@ -28,9 +28,6 @@ public class RoadNode : MonoBehaviour
     //the position of the next node
     public Vector3 NextPoint = Vector3.zero;
 
-    //for interaction with needed groeps
-    //public NodeType nodeType = NodeType.HighSpeed;
-
     //assign this to enable routing
     public RoadNode NextNode;
 
@@ -50,13 +47,12 @@ public class RoadNode : MonoBehaviour
 
     public event Action<int> OnBusEnter;
 
-    public event Action<bool, int> OnTriggerChangeWithBus;
 
     private void Awake()
     {
         this.GetComponent<BoxCollider>().isTrigger = true;
         this.GetComponent<MeshRenderer>().enabled = false;
-        if (SwitchLaneNode != null)
+        if(SwitchLaneNode != null)
         {
             this.CanSwitchLaneAtNode = true;
         }
@@ -64,7 +60,7 @@ public class RoadNode : MonoBehaviour
 
     public void AssingLampostManager(ref LampWatch watch)
     {
-        if (System.Object.ReferenceEquals(null, LampWatch))
+        if(System.Object.ReferenceEquals(null, LampWatch))
         {
             this.LampWatch = watch;
             this.IsSTopPoint = true;
@@ -74,7 +70,7 @@ public class RoadNode : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        if (System.Object.ReferenceEquals(null, LampWatch))
+        if(System.Object.ReferenceEquals(null, LampWatch))
         {
             this.IsSTopPoint = false;
         }
@@ -83,7 +79,7 @@ public class RoadNode : MonoBehaviour
             this.IsSTopPoint = true;
             this.IsDetector = true;
         }
-        if (NextNode != null)
+        if(NextNode != null)
         {
             NextPoint = NextNode.GetPointPosition();
         }
@@ -91,14 +87,14 @@ public class RoadNode : MonoBehaviour
         {
             NextPoint = GetPointPosition() + (transform.forward * 50);
         }
-        if (IsBusLaneEntryNode)
+        if(IsBusLaneEntryNode)
         {
             BusNode = FindBusNode();
         }
 
-        if (!IsWorldEntryNode)
+        if(!IsWorldEntryNode)
         {
-            if (NextNode != null)
+            if(NextNode != null)
             {
                 NextPoint = NextNode.GetPointPosition();
             }
@@ -106,7 +102,7 @@ public class RoadNode : MonoBehaviour
             {
                 NextPoint = GetPointPosition() + (transform.forward * 5000);
             }
-            if (IsBusLaneEntryNode)
+            if(IsBusLaneEntryNode)
             {
                 BusNode = FindBusNode();
             }
@@ -118,32 +114,17 @@ public class RoadNode : MonoBehaviour
         }
     }
 
-    //public Vector3 PickRandomNodeAtSwitch()
-    //{
-    //    if(SwitchLaneNode != null)
-    //    {
-    //        int spawn = UnityEngine.Random.Range(0, 2);
-
-    //        if (spawn == 1)
-    //        {
-    //            return SwitchLaneNode.GetPointPosition();
-    //        }
-
-    //    }
-    //    return
-    //}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Actor"))
+        if(other.CompareTag("Actor"))
         {
-            //other.GetComponent<ActorNodeReader>().ReadNodeInfo(this);
-            if (other.GetComponent<ActorNodeReader>().ReadNodeInfo(this))
+            if(other.GetComponent<ActorNodeReader>().ReadNodeInfo(this))
             {
                 ActorNodeReader actorNode = other.GetComponent<ActorNodeReader>();
 
-                if (IsDetector)
+                if(IsDetector)
                 {
-                    if (!actorNode.IsBus)
+                    if(!actorNode.IsBus)
                     {
                         OnTriggerChange.Invoke(true, actorNode.IsPrioV);
                     }
@@ -152,25 +133,9 @@ public class RoadNode : MonoBehaviour
                         OnTriggerChange.Invoke(true, actorNode.IsPrioV);
 
                         OnBusEnter?.Invoke(actorNode.GetBunNumber());
-
-                        //OnBusEnter.Invoke(actorNode.GetBunNumber());
                     }
                 }
-
-                //if (IsDetector)
-                //{
-                //    OnTriggerChange.Invoke(true);
-                //}
             }
-            //if (this.ISWorldBound)
-            //{
-            //    other.GetComponentInChildren<ActorNodeReader>().DisableActor();
-            //}
-
-            //if (IsDetector)
-            //{
-            //    OnTriggerChange.Invoke(true);
-            //}
         }
         else
         {
@@ -180,13 +145,12 @@ public class RoadNode : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Actor"))
+        if(other.CompareTag("Actor"))
         {
-            //other.GetComponent<ActorNodeReader>().ReadNodeInfo(this);
-            if (other.GetComponent<ActorNodeReader>().ReadNodeInfo(this))
+            if(other.GetComponent<ActorNodeReader>().ReadNodeInfo(this))
             {
                 ActorNodeReader actorNode = other.GetComponent<ActorNodeReader>();
-                if (actorNode.IsBus)
+                if(actorNode.IsBus)
                 {
                     OnBusLeave?.Invoke(actorNode.GetBunNumber());
                 }
@@ -206,11 +170,11 @@ public class RoadNode : MonoBehaviour
     //get the positiof the next node
     public Vector3 GetNextPosition()
     {
-        if (CanSwitchLaneAtNode)
+        if(CanSwitchLaneAtNode)
         {
             int c = UnityEngine.Random.Range(0, 2);
 
-            if (c == 1)
+            if(c == 1)
             {
                 return this.NextPoint;
             }
@@ -220,10 +184,6 @@ public class RoadNode : MonoBehaviour
             }
         }
         return this.NextPoint;
-    }
-
-    public void SetUpTriggers()
-    {
     }
 
     public Vector3 GetNextBusPosition()
@@ -238,11 +198,11 @@ public class RoadNode : MonoBehaviour
 
     private RoadNode FindBusNode()
     {
-        if (NextNode.IsBusOnlyNode)
+        if(NextNode.IsBusOnlyNode)
         {
             return NextNode;
         }
-        if (SwitchLaneNode.IsBusOnlyNode)
+        if(SwitchLaneNode.IsBusOnlyNode)
         {
             return SwitchLaneNode;
         }

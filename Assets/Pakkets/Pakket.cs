@@ -2,21 +2,20 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-//[System.Serializable]
-//public class Pakket
-//{
-//    public string id;
-//    public List<int> lights;
-//}
-
 [Serializable]
 public class SignalGroup
 {
     [JsonProperty("1")]
-    public blocksMsg blocksMsg1 { get; set; }
+    public blocksMsg blocksMsg1
+    {
+        get; set;
+    }
 
     [JsonProperty("2")]
-    public blocksMsg2 blocksMsg2 { get; set; }
+    public blocksMsg2 blocksMsg2
+    {
+        get; set;
+    }
 }
 
 public class blocksMsg2
@@ -84,7 +83,8 @@ public class blockmsgBus
 public class SingleDetector
 {
     public SingleDetector()
-    { }
+    {
+    }
 
     public SingleDetector(bool _detected)
     {
@@ -98,7 +98,8 @@ public class SingleDetector
 public class CarSensormsg
 {
     public CarSensormsg()
-    { }
+    {
+    }
 
     public CarSensormsg(bool detectNear, bool detectFar, bool prioCar)
     {
