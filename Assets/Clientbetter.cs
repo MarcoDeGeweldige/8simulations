@@ -10,7 +10,7 @@ public class Clientbetter : MonoBehaviour
 {
     public string serverIP = "169.254.116.160"; // Set this to your server's IP address.
     public int serverPort = 80;             // Set this to your server's port.
-    private string messageToSend = "Victory For Vegeta!"; // The message to send.
+
     public string jsonjapp;
     public string kees;
 
@@ -22,9 +22,7 @@ public class Clientbetter : MonoBehaviour
     public bool PostOnKey = false;
 
     public GloballaneManager manager;
-    //public SimulatorManager simulatorManager;
 
-    public MessageDecoder decoder;
     private TcpClient client;
     private NetworkStream stream;
     private Thread clientReceiveThread;
@@ -38,26 +36,16 @@ public class Clientbetter : MonoBehaviour
 
     private void Start()
     {
-        //string filePath = Path.Combine(Application.persistentDataPath, "ControllerToSim.json");
-        //string path = Application.persistentDataPath + "/ControllerToSim.json";
-        //StreamReader reader = new StreamReader(path);
-        //Debug.Log(reader.ReadToEnd());
-        //reader.Close();
 
-        //Debug.Log(filePath);
-        //kees = File.ReadAllText(filePath);
-        Debug.Log(kees + "derpderpderp");
-        decoder = new MessageDecoder();
-        decoder.PrintPakket();
         ConnectToServer();
     }
 
     private void Update()
     {
         //disable this if you are sending from another script or a button
-        if (Input.GetKeyDown(KeyCode.Space) && this.PostOnKey)
+        if(Input.GetKeyDown(KeyCode.Space) && this.PostOnKey)
         {
-            SendMessageToServer(messageToSend);
+            //SendMessageToServer(messageToSend);
             SendMessageToServer(jsonjapp);
         }
     }
@@ -81,16 +69,12 @@ public class Clientbetter : MonoBehaviour
     public void SetPostMode(bool mode)
     {
         this.PostOnKey = mode;
-        if (!this.PostOnKey)
+        if(!this.PostOnKey)
         {
             StartCoroutine(TimedPoster(this.MessagePostTime));
         }
     }
 
-    public float GetPostRate()
-    {
-        return this.MessagePostTime;
-    }
 
     private void ConnectToServer()
     {
@@ -101,13 +85,11 @@ public class Clientbetter : MonoBehaviour
         {
             client = new TcpClient(serverIP, serverPort);
             stream = client.GetStream();
-            //Debug.Log("Connected to server.");
-
             clientReceiveThread = new Thread(new ThreadStart(ListenForData));
             clientReceiveThread.IsBackground = true;
             clientReceiveThread.Start();
         }
-        catch (SocketException e)
+        catch(SocketException e)
         {
             Debug.LogError("SocketException: " + e.ToString());
         }
@@ -118,18 +100,18 @@ public class Clientbetter : MonoBehaviour
         try
         {
             byte[] bytes = new byte[5000];
-            while (true)
+            while(true)
             {
                 Debug.Log(stream.DataAvailable);
                 // Check if there's any data available on the network stream
-                if (stream.DataAvailable)
+                if(stream.DataAvailable)
                 {
                     int length;
 
                     // Read incoming stream into byte array.
-                    while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+                    while((length = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
-                        var incomingData = new byte[length];
+                        byte[] incomingData = new byte[length];
                         Array.Copy(bytes, 0, incomingData, 0, length);
                         // Convert byte array to string message.
                         string serverMessage = Encoding.UTF8.GetString(incomingData);
@@ -140,7 +122,7 @@ public class Clientbetter : MonoBehaviour
                 }
             }
         }
-        catch (SocketException socketException)
+        catch(SocketException socketException)
         {
             Debug.Log("Socket exception: " + socketException);
         }
@@ -149,32 +131,36 @@ public class Clientbetter : MonoBehaviour
     public void SendMessageToServer(string message)
     {
         SenderThreadState.Invoke(true);
-        //Debug.Log("Sent message to server: " + message);
-        if (client == null || !client.Connected)
+
+        if(client == null || !client.Connected)
         {
             Debug.LogError("Client not connected to server.");
             return;
         }
 
         byte[] data = Encoding.UTF8.GetBytes(message);
-        //byte[] data = Encoding.UTF8.GetBytes(pakketmsg);
 
-        //byte[] data = Encoding.UTF8.GetBytes(jopson);
-
-        //byte[] data = Encoding.UTF8.GetBytes(message);
         stream.Write(data, 0, data.Length);
-        //Debug.Log("Sent message to server: " + message);
+
         SenderThreadState.Invoke(false);
     }
 
     private void OnApplicationQuit()
     {
-        if (stream != null)
+        if(stream != null)
+        {
             stream.Close();
-        if (client != null)
+        }
+
+        if(client != null)
+        {
             client.Close();
-        if (clientReceiveThread != null)
+        }
+
+        if(clientReceiveThread != null)
+        {
             clientReceiveThread.Abort();
+        }
     }
 
     private IEnumerator TimedPoster(float time)

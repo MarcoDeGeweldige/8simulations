@@ -61,7 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b99275d19dcf64083b9889e728676f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
+  id: 0
+  detectorNum: 0
   NearWaitAndDetectLus: {fileID: 7456952373594559458}
   FarWaitAndDetectLus: {fileID: 7627721608892176315}
   HasBothLusses: 1
@@ -117,6 +119,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8770613234471024226, guid: a440709a2ba037842b8486fa9f0bac27, type: 3}
+      propertyPath: LampWatch
+      value: 
+      objectReference: {fileID: 3082931568766300658}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -141,6 +147,17 @@ MonoBehaviour:
 --- !u!114 &7627721608892176315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8579371083536724539, guid: a440709a2ba037842b8486fa9f0bac27, type: 3}
+  m_PrefabInstance: {fileID: 2218885831267984768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c5eeb2da5e4774a940595be258a92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8283540177074599028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7799701357515313652, guid: a440709a2ba037842b8486fa9f0bac27, type: 3}
   m_PrefabInstance: {fileID: 2218885831267984768}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -258,6 +275,14 @@ PrefabInstance:
       propertyPath: Parent
       value: 
       objectReference: {fileID: 3135666527429960551}
+    - target: {fileID: 7130960223374984532, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
+      propertyPath: farlus
+      value: 
+      objectReference: {fileID: 8283540177074599028}
+    - target: {fileID: 7130960223374984532, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
+      propertyPath: nearlus
+      value: 
+      objectReference: {fileID: 7456952373594559458}
     - target: {fileID: 7130960223374984532, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
       propertyPath: triggerFar
       value: 

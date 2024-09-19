@@ -1,0 +1,86 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PrebuildBlockInfo : MonoBehaviour
+{
+    public string BlockCode = "empty";
+    public bool IsBlcokB = false;
+
+    public bool HasBus = false;
+    public int BBusnr = 127;
+
+    //bike lanes
+    public GameObject BikeLaneIn;
+
+    public GameObject BikeLaneOut;
+
+    //in block
+    public GameObject PedestrianLampIn;
+
+    public GameObject PedestriianLampMid;
+
+    //revers block
+    public GameObject PedestrianLampInR;
+
+    public GameObject PedestriianLampMidR;
+
+    public List<GameObject> BikeLanes = new List<GameObject>();
+    public List<GameObject> PedestrianLanes = new List<GameObject>();
+
+    public List<WalkLanebehaviour> walkLanebehaviours = new List<WalkLanebehaviour>();
+    public List<FietsLaanBehaviour> fietsLaanBehaviours = new List<FietsLaanBehaviour>();
+
+    public List<SingleDetector> BikelaneScripts = new List<SingleDetector>();
+    public List<SingleDetector> WalklaneScripts = new List<SingleDetector>();
+
+    private void Start()
+    {
+        buildLaneList();
+        buildPedestrianLaneList();
+    }
+
+    public List<GameObject> GetPedestrianLanes() => PedestrianLanes;
+
+    public List<GameObject> GetBikeLanes() => BikeLanes;
+
+    public void HasBusOn(int nr)
+    {
+        this.HasBus = true;
+        this.BBusnr = nr;
+    }
+
+    private void buildLaneList()
+    {
+        BikeLanes.Add(BikeLaneIn);
+        fietsLaanBehaviours.Add(BikeLaneIn.GetComponentInChildren<FietsLaanBehaviour>());
+        BikeLanes.Add(BikeLaneOut);
+        fietsLaanBehaviours.Add(BikeLaneOut.GetComponentInChildren<FietsLaanBehaviour>());
+    }
+
+    private void buildPedestrianLaneList()
+    {
+        PedestrianLanes.Add(PedestrianLampIn);
+        PedestrianLanes.Add(PedestriianLampMid);
+        PedestrianLanes.Add(PedestriianLampMidR);
+        PedestrianLanes.Add(PedestrianLampInR);
+    }
+
+    public void Setlamps(List<int> BikeLampsStates, List<int> PedestrianlampsStates)
+    {
+        for(int i = 0; i < BikeLampsStates.Count; i++)
+        {
+            BikeLanes[i].GetComponentInChildren<FietsLaanBehaviour>().SetLampLight(BikeLampsStates[i]);
+        }
+        if(PedestrianlampsStates != null && PedestrianLanes != null)
+        {
+            for(int i = 0; i < Mathf.Min(PedestrianlampsStates.Count, PedestrianLanes.Count - 1); i++)
+            {
+                var walkBehaviour = PedestrianLanes[i].GetComponentInChildren<WalkLanebehaviour>();
+                if(walkBehaviour != null)
+                {
+                    walkBehaviour.SetLampLight(PedestrianlampsStates[i]);
+                }
+            }
+        }
+    }
+}

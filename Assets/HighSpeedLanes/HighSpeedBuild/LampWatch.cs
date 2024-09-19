@@ -6,6 +6,7 @@ public class LampWatch : MonoBehaviour
 {
     [SerializeField]
     private bool canGo = false;
+
     private bool SharesBus = false;
 
     private void Start()
@@ -18,9 +19,8 @@ public class LampWatch : MonoBehaviour
 
     private IEnumerator PublishLoop()
     {
-        while (true) // Loop indefinitely
+        while(true) // Loop indefinitely
         {
-            //DetectVehiclesInFront();
             OnCanGoChanged?.Invoke(canGo, SharesBus);
             yield return new WaitForSeconds(2); // Wait for 2 seconds before the next scan
         }
@@ -41,10 +41,13 @@ public class LampWatch : MonoBehaviour
     // Property to encapsulate canGo with the event trigger
     public bool CanGo
     {
-        get { return canGo; }
+        get
+        {
+            return canGo;
+        }
         set
         {
-            if (canGo != value)
+            if(canGo != value)
             {
                 canGo = value;
                 // Raise the event to notify subscribers with the new value

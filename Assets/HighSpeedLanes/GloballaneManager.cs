@@ -76,6 +76,8 @@ public class GloballaneManager : MonoBehaviour
         StartCoroutine(getLane(timeInSec));
         StartCoroutine(Simutick(timeInSec));
         StartCoroutine(UpdatePakket(updateTimer));
+        StartCoroutine(gettestmsg());
+        StartCoroutine(RanomizeLamps());
     }
 
     public void SetOntruimingsTijdAuto(float tijd)
@@ -93,6 +95,15 @@ public class GloballaneManager : MonoBehaviour
         this.OntruimingsTijdLoper = tijd;
     }
 
+    private IEnumerator RanomizeLamps()
+    {
+        while(true) // Loop indefinitely
+        {
+            yield return new WaitForSeconds(10);
+            DirectLampLink.UpdatRandomlyLights();
+        }
+    }
+
     private IEnumerator getLane(int timeInSec)
     {
         //refresh simulation state 5 secs
@@ -104,20 +115,24 @@ public class GloballaneManager : MonoBehaviour
         this.SignalGroup = GetSignalGroup();
     }
 
+    private IEnumerator gettestmsg()
+    {
+        //refresh simulation state 5 secs
+        yield return new WaitForSeconds(10);
+        SensorDatamanager.GetCarmsg();
+    }
+
     private IEnumerator UpdatePakket(float ticktime)
     {
-        //yield return new WaitForSeconds(ticktime);
-        //string japsie = JsonConvert.SerializeObject(SignalGroup);
-        //if (Communicator != null)
-        //{
-        //    Communicator.jsonjapp = japsie;
-        //}
-        //StartCoroutine(UpdatePakket(ticktime));
-        while (true) // Loop indefinitely
+        while(true) // Loop indefinitely
         {
             yield return new WaitForSeconds(ticktime);
-            string japsie = JsonConvert.SerializeObject(SignalGroup);
-            if (Communicator != null)
+
+
+            string japsie = JsonConvert.SerializeObject(SensorDatamanager.GetSignalGroup());
+
+            Debug.Log(japsie);
+            if(Communicator != null)
             {
                 Communicator.jsonjapp = japsie;
             }
@@ -127,60 +142,19 @@ public class GloballaneManager : MonoBehaviour
     //time based loop for refreshing important things
     private IEnumerator Simutick(int timeInSec)
     {
-        //refresh simulation state 5 secs
-        //yield return new WaitForSeconds(timeInSec);
-        //SpawnRandomCars(SpawnMin, SpawnMax);
-        //if (LoopSpawn)
-        //{
-        //    StartCoroutine(Simutick(timeInSec));
-        //}
-        while (true && LoopSpawn)
+        while(true && LoopSpawn)
         {
             yield return new WaitForSeconds(timeInSec);
-            SpawnRandomCars(SpawnMin, SpawnMax);
-        }
 
+            NodeTrafficSpawn.SpawnTrafficAtAllStartPoint();
+        }
     }
 
     //use this to assign cars to lights
-    private void SpawnRandomCars(int min, int max)
-    {
-        //foreach (GameObject go in Carlanes)
-        //{
-        //    int c = UnityEngine.Random.Range(min, max);
-        //    CreateCars(go.GetComponentInChildren<CarLanebehaviour>(), c);
-        //}
-        //foreach (GameObject go in CarlanesB)
-        //{
-        //    int c = UnityEngine.Random.Range(min, max);
-        //    CreateCars(go.GetComponentInChildren<CarLanebehaviour>(), c);
-        //}
-        //foreach (GameObject go in WalkLanes)
-        //{
-        //    int c = UnityEngine.Random.Range(min, max);
-        //    CreateWalkers(go.GetComponentInChildren<WalkLanebehaviour>(), c);
-        //}
-        //foreach (GameObject go in WalkLanesB)
-        //{
-        //    int c = UnityEngine.Random.Range(min, max);
-        //    CreateWalkers(go.GetComponentInChildren<WalkLanebehaviour>(), c);
-        //}
-        //foreach (GameObject go in BikeLanes)
-        //{
-        //    int c = UnityEngine.Random.Range(min, max);
-        //    CreateBikers(go.GetComponentInChildren<FietsLaanBehaviour>(), c);
-        //}
-        //foreach (GameObject go in BikeLanesB)
-        //{
-        //    int c = UnityEngine.Random.Range(min, max);
-        //    CreateBikers(go.GetComponentInChildren<FietsLaanBehaviour>(), c);
-        //}
-    }
 
 
     public void getBikeLaneInfo()
     {
-        //PrebuiltLaneA.GetComponent<PrebuildBlockInfo>().fietsLaanBehaviours
         WalklaneA = PrebuiltLaneA.GetComponent<PrebuildBlockInfo>().WalklaneScripts;
         WalklaneB = PrebuiltLaneB.GetComponent<PrebuildBlockInfo>().WalklaneScripts;
         WalklaneE = PrebuiltLaneE.GetComponent<PrebuildBlockInfo>().WalklaneScripts;
@@ -212,16 +186,16 @@ public class GloballaneManager : MonoBehaviour
     private void getdata()
     {
         //for abc
-        for (int i = 0; i < 4; i++)
+        for(int i = 0; i < 4; i++)
         {
             carSensormsgsA.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
         }
 
-        for (int i = 4; i < 4 + 4; i++)
+        for(int i = 4; i < 4 + 4; i++)
         {
             carSensormsgsB.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
         }
-        for (int i = 4 + 4; i < 4 + 4 + 4; i++)
+        for(int i = 4 + 4; i < 4 + 4 + 4; i++)
         {
             carSensormsgsC.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
         }
@@ -230,96 +204,20 @@ public class GloballaneManager : MonoBehaviour
     private void getdataFromPreBuildB()
     {
         //for Def
-        for (int i = 0; i < 4; i++)
+        for(int i = 0; i < 4; i++)
         {
             carSensormsgsD.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
         }
 
-        for (int i = 4; i < 4 + 3; i++)
+        for(int i = 4; i < 4 + 3; i++)
         {
             carSensormsgsE.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
         }
-        for (int i = 4 + 3; i < 4 + 3 + 4; i++)
+        for(int i = 4 + 3; i < 4 + 3 + 4; i++)
         {
             carSensormsgsF.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
         }
     }
-
-    //create and add cars to the light
-    //private void CreateCars(CarLanebehaviour go, int count)
-    //{
-    //    if (go.IsMiddlePoint)
-    //    {
-    //        return;
-    //    }
-
-    //    for (int i = 0; i < count; i++)
-    //    {
-    //        GameObject kees = Instantiate(CarActorCollection.GetRandomCarPrefab(), go.GetSpwanPos(), Quaternion.identity);
-    //        kees.GetComponentInChildren<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-    //        kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
-    //        kees.GetComponentInChildren<Movement>().Setup();
-    //        kees.GetComponentInChildren<Movement>().SetNewDuration(OntruimingsTijdAuto);
-    //    }
-    //}
-
-    //private void CreateBus(CarLanebehaviour go)
-    //{
-    //    //GameObject kees = Instantiate(CarActorCollection.GetBussprefab(), go.GetSpwanPos(), Quaternion.identity);
-    //    //kees.GetComponentInChildren<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-    //    //kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
-    //    //kees.GetComponentInChildren<Movement>().Setup();
-    //    //kees.GetComponentInChildren<Movement>().SetNewDuration(OntruimingsTijdAuto);
-    //}
-
-    //private void CreatePrioVeh(CarLanebehaviour go)
-    //{
-    //    GameObject kees = Instantiate(CarActorCollection.GetPrioPrefab(), go.GetSpwanPos(), Quaternion.identity);
-    //    kees.GetComponentInChildren<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-    //    kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
-    //    kees.GetComponentInChildren<Movement>().Setup();
-    //    kees.GetComponentInChildren<Movement>().SetNewDuration(OntruimingsTijdAuto);
-    //}
-
-    //private void CreateWalkers(WalkLanebehaviour go, int count)
-    //{
-    //    if (go.IsMiddlePoint)
-    //    {
-    //        return;
-    //    }
-
-    //    if (go.lampostManager == null)
-    //    {
-    //        go.lampostManager = GetComponentInChildren<LampostManager>();
-    //        //return;
-    //    }
-
-    //    if (go.lampostManager == null)
-    //    {
-    //        return;
-    //    }
-    //    for (int i = 0; i < count; i++)
-    //    {
-    //        GameObject kees = Instantiate(CarActorCollection.GetPedestrianPrefab(), go.GetLaneStart(), Quaternion.identity);
-    //        kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-    //        kees.GetComponent<ActorPathFinding>().watch = go.lampostManager.watch;
-
-    //        kees.GetComponent<Movement>().Setup();
-    //        kees.GetComponent<Movement>().SetNewDuration(OntruimingsTijdLoper);
-    //    }
-    //}
-
-    //private void CreateBikers(FietsLaanBehaviour go, int count)
-    //{
-    //    for (int i = 0; i < count; i++)
-    //    {
-    //        GameObject kees = Instantiate(CarActorCollection.GetBikerPrefab(), go.GetLaneStart(), Quaternion.identity);
-    //        kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-    //        kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
-    //        kees.GetComponent<Movement>().Setup();
-    //        kees.GetComponent<Movement>().SetNewDuration(OntruimingsTijdFietser);
-    //    }
-    //}
 
     public SignalGroup GetSignalGroup()
     {
@@ -385,7 +283,7 @@ public class GloballaneManager : MonoBehaviour
 
     public void Update()
     {
-        if (Communicator.updatedKees)
+        if(Communicator.updatedKees)
         {
             LaneLampSettr.DecodeJappie(Communicator.kees);
             Communicator.updatedKees = false;

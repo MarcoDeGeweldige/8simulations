@@ -10,6 +10,5 @@ public class TimeDisplayer : MonoBehaviour
     public void RenderValue(float val)
     {
         textVak.SetText(val.ToString());
-
     }
 }
