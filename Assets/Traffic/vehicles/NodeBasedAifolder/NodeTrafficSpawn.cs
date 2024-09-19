@@ -54,7 +54,7 @@ public class NodeTrafficSpawn : MonoBehaviour
 
             if(spawn == 1)
             {
-                Instantiate(CarActorCollection.GetRandomPedPrefab(), item.GetPointPosition(), Quaternion.identity);
+                //Instantiate(CarActorCollection.GetRandomPedPrefab(), item.GetPointPosition(), Quaternion.identity);
             }
         }
         foreach(RoadNode item in EntrryNodesBiker)
@@ -63,7 +63,7 @@ public class NodeTrafficSpawn : MonoBehaviour
 
             if(spawn == 1)
             {
-                Instantiate(CarActorCollection.GetRandomBikePrefab(), item.GetPointPosition(), Quaternion.identity);
+                //Instantiate(CarActorCollection.GetRandomBikePrefab(), item.GetPointPosition(), Quaternion.identity);
             }
         }
     }

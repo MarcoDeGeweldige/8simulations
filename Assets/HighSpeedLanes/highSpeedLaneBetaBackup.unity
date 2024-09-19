@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.08802065, g: 0.18592857, b: 0.4339623, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 323d45d2cf09e1c4b9a79a1c6e64fbfc, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1033500316}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.544402, g: 0.50700146, b: 0.5242695, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14650,7 +14650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: timeInSec
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: LaneScalar
@@ -14658,7 +14658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: updateTimer
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: Communicator
@@ -16240,7 +16240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &806388796
 Transform:
   m_ObjectHideFlags: 0
@@ -19791,8 +19791,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9843137}
-  m_Intensity: 100000
+  m_Color: {r: 0, g: 0.13022564, b: 0.18867922, a: 0.9843137}
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -19804,7 +19804,7 @@ Light:
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.65
+    m_NearPlane: 0.43
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -19834,7 +19834,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 7.16e-43, y: 6.787158e-28, z: 7.16e-43, w: 7.2110007e+28}
@@ -19899,7 +19899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LensFlareData: {fileID: 11400000, guid: f7e714931966449938e1e97907499634, type: 2}
   version: 0
-  intensity: 1.36
+  intensity: 1
   maxAttenuationDistance: 100
   maxAttenuationScale: 100
   distanceAttenuationCurve:
@@ -19979,11 +19979,11 @@ MonoBehaviour:
   useBackgroundCloudOcclusion: 0
   environmentOcclusion: 0
   useWaterOcclusion: 0
-  occlusionRadius: 0.1
+  occlusionRadius: 2.93
   sampleCount: 32
-  occlusionOffset: 0.05
-  scale: 1.78
-  allowOffScreen: 0
+  occlusionOffset: 0.48
+  scale: 1
+  allowOffScreen: 1
   volumetricCloudOcclusion: 0
   occlusionRemapCurve:
     <length>k__BackingField: 2
@@ -20014,7 +20014,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  lightOverride: {fileID: 0}
+  lightOverride: {fileID: 1978076346}
 --- !u!114 &1033500320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25142,19 +25142,19 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 12
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 10.26, y: 7.49}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -25164,7 +25164,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 34.664547
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -28803,7 +28803,7 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 1, g: 0, b: 0, a: 0}
+          key0: {r: 0, g: 0, b: 0, a: 0}
           key1: {r: 1, g: 1, b: 1, a: 0.2509804}
           key2: {r: 0, g: 0, b: 0, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
@@ -28846,7 +28846,7 @@ Transform:
   m_GameObject: {fileID: 1517705227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 253, y: 0.51999855, z: 158.3}
+  m_LocalPosition: {x: 380.08, y: 0.51999855, z: 84.1}
   m_LocalScale: {x: 15.226339, y: 15.226339, z: 15.226339}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39303,6 +39303,11 @@ MonoBehaviour:
   m_ObsoleteUseShadowQualitySettings: 0
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
+--- !u!108 &1978076346 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 6497207216954382098, guid: e0a7de34b27a30343bf9a4694a335764, type: 3}
+  m_PrefabInstance: {fileID: 3131961332862105530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1987584215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43101,7 +43106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2145720282
 MonoBehaviour:
   m_ObjectHideFlags: 0
